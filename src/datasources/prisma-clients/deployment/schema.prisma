@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./prisma-clients/deployment"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+// Project and Service Management
+model Project {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  ownerId     String
+  services    Service[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Service {
+  id          String          @id @default(cuid())
+  name        String
+  projectId   String
+  project     Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  gitRepoUrl  String
+  deployments Deployment[]
+  typeId      String
+  type        ServiceType     @relation(fields: [typeId], references: [id])
+  subtypeId   String?
+  subtype     ServiceSubtype? @relation(fields: [subtypeId], references: [id])
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  deployedIn  Deployment[]    @relation("ServiceInDeployment")
+}
+
+model ServiceType {
+  id       String           @id @default(cuid())
+  name     String           @unique
+  subtypes ServiceSubtype[]
+  services Service[]
+}
+
+model ServiceSubtype {
+  id            String      @id @default(cuid())
+  name          String      @unique
+  serviceType   ServiceType @relation(fields: [serviceTypeId], references: [id])
+  serviceTypeId String
+  services      Service[]
+}
+
+// Provider Management
+model Provider {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  typeId       String
+  type         ProviderType  @relation(fields: [typeId], references: [id])
+  pricingPlans PricingPlan[]
+  plans        Plan[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model ProviderType {
+  id        String     @id
+  providers Provider[]
+}
+
+model PricingPlan {
+  id           String      @id @default(cuid())
+  providerId   String
+  provider     Provider    @relation(fields: [providerId], references: [id])
+  cost         Float
+  billingUnit  BillingUnit
+  customConfig Json
+  plans        Plan[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+enum BillingUnit {
+  HOUR
+  DAY
+  MONTH
+}
+
+// Deployment Management
+model Environment {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  description String
+  deployments Deployment[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Deployment {
+  id                   String            @id @default(cuid())
+  name                 String
+  description          String
+  environmentId        String
+  environment          Environment       @relation(fields: [environmentId], references: [id])
+  serviceId            String
+  service              Service           @relation(fields: [serviceId], references: [id])
+  planId               String
+  plan                 Plan              @relation(fields: [planId], references: [id])
+  status               DeploymentStatus
+  monitoringConfigId   String?
+  monitoringConfig     MonitoringConfig? @relation(fields: [monitoringConfigId], references: [id])
+  telemetryDashboards  Json
+  appVersion           String
+  microServices        Service[]         @relation("ServiceInDeployment")
+  microServiceVersions String[]
+  dbVersion            String
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+}
+
+enum DeploymentStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  FAILED
+  ROLLBACK
+}
+
+model Plan {
+  id                 String            @id @default(cuid())
+  name               String
+  providerId         String
+  provider           Provider          @relation(fields: [providerId], references: [id])
+  pricingPlanId      String?
+  pricingPlan        PricingPlan?      @relation(fields: [pricingPlanId], references: [id])
+  deploymentConfig   Json
+  monitoringConfigId String?
+  monitoringConfig   MonitoringConfig? @relation(fields: [monitoringConfigId], references: [id])
+  deployments        Deployment[]
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+}
+
+model MonitoringConfig {
+  id          String       @id @default(cuid())
+  logs        Json
+  traces      Json
+  metrics     Json
+  deployments Deployment[]
+  plans       Plan[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}

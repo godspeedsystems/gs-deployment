@@ -1,0 +1,6 @@
+summary: Create PricingPlan
+tasks:
+  - id: schema_pricingplan_create
+    fn: datasource.schema.PricingPlan.create
+    args:
+      data: <% inputs.body %>

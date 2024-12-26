@@ -1,0 +1,6 @@
+summary: Create Project
+tasks:
+  - id: schema_project_create
+    fn: datasource.schema.Project.create
+    args:
+      data: <% inputs.body %>

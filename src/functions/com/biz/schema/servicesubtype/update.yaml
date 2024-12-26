@@ -1,0 +1,8 @@
+summary: Update ServiceSubtype
+tasks:
+  - id: schema_servicesubtype_update
+    fn: datasource.schema.ServiceSubtype.update
+    args:
+      where:
+        id: <% inputs.params.id %>
+      data: <% inputs.body %>

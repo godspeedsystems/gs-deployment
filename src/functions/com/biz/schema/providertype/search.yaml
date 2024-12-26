@@ -1,0 +1,5 @@
+summary: Fetch many ProviderType
+tasks:
+  - id: schema_providertype_search
+    fn: datasource.schema.ProviderType.findMany
+    args: {}

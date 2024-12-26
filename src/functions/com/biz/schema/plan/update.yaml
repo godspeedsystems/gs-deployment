@@ -1,0 +1,8 @@
+summary: Update Plan
+tasks:
+  - id: schema_plan_update
+    fn: datasource.schema.Plan.update
+    args:
+      where:
+        id: <% inputs.params.id %>
+      data: <% inputs.body %>

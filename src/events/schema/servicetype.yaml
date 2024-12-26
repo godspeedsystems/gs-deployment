@@ -1,0 +1,93 @@
+# ONE
+http.get./schema/servicetype/{id}:
+  summary: Fetch ServiceType
+  description: Fetch ServiceType from database
+  fn: com.biz.schema.servicetype.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./schema/servicetype:
+  summary: Create a new ServiceType
+  description: Create ServiceType from database
+  fn: com.biz.schema.servicetype.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/ServiceType'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./schema/servicetype/{id}:
+  summary: Update a ServiceType
+  description: Update ServiceType from database
+  fn: com.biz.schema.servicetype.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/ServiceType'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./schema/servicetype/{id}:
+  summary: Delete a ServiceType
+  description: Delete ServiceType from database
+  fn: com.biz.schema.servicetype.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./schema/servicetype/search:
+  summary: Fetch multiple ServiceType
+  description: Fetch multiple ServiceType from database
+  fn: com.biz.schema.servicetype.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

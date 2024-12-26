@@ -1,0 +1,93 @@
+# ONE
+http.get./schema/service/{id}:
+  summary: Fetch Service
+  description: Fetch Service from database
+  fn: com.biz.schema.service.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./schema/service:
+  summary: Create a new Service
+  description: Create Service from database
+  fn: com.biz.schema.service.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/Service'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./schema/service/{id}:
+  summary: Update a Service
+  description: Update Service from database
+  fn: com.biz.schema.service.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/Service'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./schema/service/{id}:
+  summary: Delete a Service
+  description: Delete Service from database
+  fn: com.biz.schema.service.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./schema/service/search:
+  summary: Fetch multiple Service
+  description: Fetch multiple Service from database
+  fn: com.biz.schema.service.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

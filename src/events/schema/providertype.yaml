@@ -1,0 +1,93 @@
+# ONE
+http.get./schema/providertype/{id}:
+  summary: Fetch ProviderType
+  description: Fetch ProviderType from database
+  fn: com.biz.schema.providertype.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./schema/providertype:
+  summary: Create a new ProviderType
+  description: Create ProviderType from database
+  fn: com.biz.schema.providertype.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/ProviderType'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./schema/providertype/{id}:
+  summary: Update a ProviderType
+  description: Update ProviderType from database
+  fn: com.biz.schema.providertype.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/ProviderType'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./schema/providertype/{id}:
+  summary: Delete a ProviderType
+  description: Delete ProviderType from database
+  fn: com.biz.schema.providertype.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./schema/providertype/search:
+  summary: Fetch multiple ProviderType
+  description: Fetch multiple ProviderType from database
+  fn: com.biz.schema.providertype.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

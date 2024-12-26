@@ -1,0 +1,7 @@
+summary: Fetch ServiceType
+tasks:
+  - id: schema_servicetype_one
+    fn: datasource.schema.ServiceType.findUnique
+    args:
+      where:
+        id: <% inputs.params.id %>

@@ -1,0 +1,93 @@
+# ONE
+http.get./schema/environment/{id}:
+  summary: Fetch Environment
+  description: Fetch Environment from database
+  fn: com.biz.schema.environment.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./schema/environment:
+  summary: Create a new Environment
+  description: Create Environment from database
+  fn: com.biz.schema.environment.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/Environment'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./schema/environment/{id}:
+  summary: Update a Environment
+  description: Update Environment from database
+  fn: com.biz.schema.environment.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/Environment'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./schema/environment/{id}:
+  summary: Delete a Environment
+  description: Delete Environment from database
+  fn: com.biz.schema.environment.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./schema/environment/search:
+  summary: Fetch multiple Environment
+  description: Fetch multiple Environment from database
+  fn: com.biz.schema.environment.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

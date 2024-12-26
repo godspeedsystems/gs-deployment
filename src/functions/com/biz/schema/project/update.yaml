@@ -1,0 +1,8 @@
+summary: Update Project
+tasks:
+  - id: schema_project_update
+    fn: datasource.schema.Project.update
+    args:
+      where:
+        id: <% inputs.params.id %>
+      data: <% inputs.body %>

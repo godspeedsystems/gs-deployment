@@ -1,0 +1,8 @@
+summary: Update ServiceType
+tasks:
+  - id: schema_servicetype_update
+    fn: datasource.schema.ServiceType.update
+    args:
+      where:
+        id: <% inputs.params.id %>
+      data: <% inputs.body %>

@@ -1,0 +1,93 @@
+# ONE
+http.get./schema/pricingplan/{id}:
+  summary: Fetch PricingPlan
+  description: Fetch PricingPlan from database
+  fn: com.biz.schema.pricingplan.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./schema/pricingplan:
+  summary: Create a new PricingPlan
+  description: Create PricingPlan from database
+  fn: com.biz.schema.pricingplan.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/PricingPlan'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./schema/pricingplan/{id}:
+  summary: Update a PricingPlan
+  description: Update PricingPlan from database
+  fn: com.biz.schema.pricingplan.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/schema/PricingPlan'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./schema/pricingplan/{id}:
+  summary: Delete a PricingPlan
+  description: Delete PricingPlan from database
+  fn: com.biz.schema.pricingplan.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./schema/pricingplan/search:
+  summary: Fetch multiple PricingPlan
+  description: Fetch multiple PricingPlan from database
+  fn: com.biz.schema.pricingplan.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

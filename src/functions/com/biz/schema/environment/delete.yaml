@@ -1,0 +1,7 @@
+summary: Delete Environment
+tasks:
+  - id: schema_environment_delete
+    fn: datasource.schema.Environment.delete
+    args:
+      where:
+        id: <% inputs.params.id %>

@@ -1,0 +1,6 @@
+summary: Create Deployment
+tasks:
+  - id: schema_deployment_create
+    fn: datasource.schema.Deployment.create
+    args:
+      data: <% inputs.body %>

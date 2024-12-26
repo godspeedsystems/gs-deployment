@@ -1,0 +1,6 @@
+summary: Create Plan
+tasks:
+  - id: schema_plan_create
+    fn: datasource.schema.Plan.create
+    args:
+      data: <% inputs.body %>

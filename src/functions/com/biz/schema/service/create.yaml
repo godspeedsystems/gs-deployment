@@ -1,0 +1,6 @@
+summary: Create Service
+tasks:
+  - id: schema_service_create
+    fn: datasource.schema.Service.create
+    args:
+      data: <% inputs.body %>

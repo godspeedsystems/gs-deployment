@@ -1,0 +1,7 @@
+summary: Delete ProviderType
+tasks:
+  - id: schema_providertype_delete
+    fn: datasource.schema.ProviderType.delete
+    args:
+      where:
+        id: <% inputs.params.id %>

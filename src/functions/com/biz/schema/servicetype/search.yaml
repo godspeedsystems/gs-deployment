@@ -1,0 +1,5 @@
+summary: Fetch many ServiceType
+tasks:
+  - id: schema_servicetype_search
+    fn: datasource.schema.ServiceType.findMany
+    args: {}

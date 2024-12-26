@@ -1,0 +1,7 @@
+summary: Fetch Deployment
+tasks:
+  - id: schema_deployment_one
+    fn: datasource.schema.Deployment.findUnique
+    args:
+      where:
+        id: <% inputs.params.id %>

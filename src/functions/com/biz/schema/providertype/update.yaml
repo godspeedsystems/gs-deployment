@@ -1,0 +1,8 @@
+summary: Update ProviderType
+tasks:
+  - id: schema_providertype_update
+    fn: datasource.schema.ProviderType.update
+    args:
+      where:
+        id: <% inputs.params.id %>
+      data: <% inputs.body %>

@@ -1,0 +1,5 @@
+summary: Fetch many Plan
+tasks:
+  - id: schema_plan_search
+    fn: datasource.schema.Plan.findMany
+    args: {}

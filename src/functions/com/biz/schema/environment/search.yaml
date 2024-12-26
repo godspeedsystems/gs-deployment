@@ -1,0 +1,5 @@
+summary: Fetch many Environment
+tasks:
+  - id: schema_environment_search
+    fn: datasource.schema.Environment.findMany
+    args: {}

@@ -1,0 +1,6 @@
+summary: Create Provider
+tasks:
+  - id: schema_provider_create
+    fn: datasource.schema.Provider.create
+    args:
+      data: <% inputs.body %>

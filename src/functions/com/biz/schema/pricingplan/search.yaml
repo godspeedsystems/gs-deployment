@@ -1,0 +1,5 @@
+summary: Fetch many PricingPlan
+tasks:
+  - id: schema_pricingplan_search
+    fn: datasource.schema.PricingPlan.findMany
+    args: {}

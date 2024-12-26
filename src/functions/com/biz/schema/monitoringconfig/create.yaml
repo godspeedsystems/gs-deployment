@@ -1,0 +1,6 @@
+summary: Create MonitoringConfig
+tasks:
+  - id: schema_monitoringconfig_create
+    fn: datasource.schema.MonitoringConfig.create
+    args:
+      data: <% inputs.body %>
