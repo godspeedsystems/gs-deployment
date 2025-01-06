@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/registry/{id}:
+  summary: Fetch Registry
+  description: Fetch Registry from database
+  fn: com.biz.gs-paas.registry.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/registry:
+  summary: Create a new Registry
+  description: Create Registry from database
+  fn: com.biz.gs-paas.registry.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Registry'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/registry/{id}:
+  summary: Update a Registry
+  description: Update Registry from database
+  fn: com.biz.gs-paas.registry.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Registry'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/registry/{id}:
+  summary: Delete a Registry
+  description: Delete Registry from database
+  fn: com.biz.gs-paas.registry.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/registry/search:
+  summary: Fetch multiple Registry
+  description: Fetch multiple Registry from database
+  fn: com.biz.gs-paas.registry.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

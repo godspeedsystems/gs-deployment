@@ -1,0 +1,8 @@
+summary: Update ServiceEnvironment
+tasks:
+  - id: gs-paas_serviceenvironment_update
+    fn: datasource.gs-paas.ServiceEnvironment.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

@@ -1,6 +1,0 @@
-summary: Create ServiceSubtype
-tasks:
-  - id: schema_servicesubtype_create
-    fn: datasource.schema.ServiceSubtype.create
-    args:
-      data: <% inputs.body %>

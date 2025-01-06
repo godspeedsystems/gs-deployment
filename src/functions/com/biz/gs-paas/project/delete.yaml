@@ -1,0 +1,7 @@
+summary: Delete Project
+tasks:
+  - id: gs-paas_project_delete
+    fn: datasource.gs-paas.Project.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

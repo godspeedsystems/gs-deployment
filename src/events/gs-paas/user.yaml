@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/user/{id}:
+  summary: Fetch User
+  description: Fetch User from database
+  fn: com.biz.gs-paas.user.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/user:
+  summary: Create a new User
+  description: Create User from database
+  fn: com.biz.gs-paas.user.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/User'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/user/{id}:
+  summary: Update a User
+  description: Update User from database
+  fn: com.biz.gs-paas.user.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/User'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/user/{id}:
+  summary: Delete a User
+  description: Delete User from database
+  fn: com.biz.gs-paas.user.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/user/search:
+  summary: Fetch multiple User
+  description: Fetch multiple User from database
+  fn: com.biz.gs-paas.user.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

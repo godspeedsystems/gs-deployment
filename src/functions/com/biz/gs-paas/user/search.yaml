@@ -1,0 +1,5 @@
+summary: Fetch many User
+tasks:
+  - id: gs-paas_user_search
+    fn: datasource.gs-paas.User.findMany
+    args: {}

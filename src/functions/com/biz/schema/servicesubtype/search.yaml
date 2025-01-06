@@ -1,5 +1,0 @@
-summary: Fetch many ServiceSubtype
-tasks:
-  - id: schema_servicesubtype_search
-    fn: datasource.schema.ServiceSubtype.findMany
-    args: {}

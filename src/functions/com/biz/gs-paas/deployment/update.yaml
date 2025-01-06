@@ -1,0 +1,8 @@
+summary: Update Deployment
+tasks:
+  - id: gs-paas_deployment_update
+    fn: datasource.gs-paas.Deployment.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

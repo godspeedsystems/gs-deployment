@@ -1,7 +1,0 @@
-summary: Delete Project
-tasks:
-  - id: schema_project_delete
-    fn: datasource.schema.Project.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

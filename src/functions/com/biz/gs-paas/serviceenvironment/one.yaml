@@ -1,0 +1,7 @@
+summary: Fetch ServiceEnvironment
+tasks:
+  - id: gs-paas_serviceenvironment_one
+    fn: datasource.gs-paas.ServiceEnvironment.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

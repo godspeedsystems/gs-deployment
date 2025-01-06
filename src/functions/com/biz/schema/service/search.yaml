@@ -1,5 +1,0 @@
-summary: Fetch many Service
-tasks:
-  - id: schema_service_search
-    fn: datasource.schema.Service.findMany
-    args: {}

@@ -1,6 +1,0 @@
-summary: Create ServiceType
-tasks:
-  - id: schema_servicetype_create
-    fn: datasource.schema.ServiceType.create
-    args:
-      data: <% inputs.body %>

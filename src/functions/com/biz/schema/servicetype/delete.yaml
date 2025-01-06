@@ -1,7 +1,0 @@
-summary: Delete ServiceType
-tasks:
-  - id: schema_servicetype_delete
-    fn: datasource.schema.ServiceType.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

@@ -1,0 +1,5 @@
+summary: Fetch many Registry
+tasks:
+  - id: gs-paas_registry_search
+    fn: datasource.gs-paas.Registry.findMany
+    args: {}

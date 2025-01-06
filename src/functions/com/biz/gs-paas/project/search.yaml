@@ -1,0 +1,5 @@
+summary: Fetch many Project
+tasks:
+  - id: gs-paas_project_search
+    fn: datasource.gs-paas.Project.findMany
+    args: {}

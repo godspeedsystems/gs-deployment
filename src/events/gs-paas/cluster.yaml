@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/cluster/{id}:
+  summary: Fetch Cluster
+  description: Fetch Cluster from database
+  fn: com.biz.gs-paas.cluster.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/cluster:
+  summary: Create a new Cluster
+  description: Create Cluster from database
+  fn: com.biz.gs-paas.cluster.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Cluster'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/cluster/{id}:
+  summary: Update a Cluster
+  description: Update Cluster from database
+  fn: com.biz.gs-paas.cluster.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Cluster'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/cluster/{id}:
+  summary: Delete a Cluster
+  description: Delete Cluster from database
+  fn: com.biz.gs-paas.cluster.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/cluster/search:
+  summary: Fetch multiple Cluster
+  description: Fetch multiple Cluster from database
+  fn: com.biz.gs-paas.cluster.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

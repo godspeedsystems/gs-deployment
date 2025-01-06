@@ -1,0 +1,8 @@
+summary: Update BuildDetails
+tasks:
+  - id: gs-paas_builddetails_update
+    fn: datasource.gs-paas.BuildDetails.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

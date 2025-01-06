@@ -1,0 +1,5 @@
+summary: Fetch many Namespace
+tasks:
+  - id: gs-paas_namespace_search
+    fn: datasource.gs-paas.Namespace.findMany
+    args: {}

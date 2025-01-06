@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/deployment/{id}:
+  summary: Fetch Deployment
+  description: Fetch Deployment from database
+  fn: com.biz.gs-paas.deployment.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/deployment:
+  summary: Create a new Deployment
+  description: Create Deployment from database
+  fn: com.biz.gs-paas.deployment.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Deployment'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/deployment/{id}:
+  summary: Update a Deployment
+  description: Update Deployment from database
+  fn: com.biz.gs-paas.deployment.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Deployment'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/deployment/{id}:
+  summary: Delete a Deployment
+  description: Delete Deployment from database
+  fn: com.biz.gs-paas.deployment.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/deployment/search:
+  summary: Fetch multiple Deployment
+  description: Fetch multiple Deployment from database
+  fn: com.biz.gs-paas.deployment.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

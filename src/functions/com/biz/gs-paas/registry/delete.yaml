@@ -1,0 +1,7 @@
+summary: Delete Registry
+tasks:
+  - id: gs-paas_registry_delete
+    fn: datasource.gs-paas.Registry.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,7 +1,0 @@
-summary: Delete Deployment
-tasks:
-  - id: schema_deployment_delete
-    fn: datasource.schema.Deployment.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

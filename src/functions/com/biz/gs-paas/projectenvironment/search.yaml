@@ -1,0 +1,5 @@
+summary: Fetch many ProjectEnvironment
+tasks:
+  - id: gs-paas_projectenvironment_search
+    fn: datasource.gs-paas.ProjectEnvironment.findMany
+    args: {}

@@ -1,0 +1,7 @@
+summary: Delete ServiceEnvironment
+tasks:
+  - id: gs-paas_serviceenvironment_delete
+    fn: datasource.gs-paas.ServiceEnvironment.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

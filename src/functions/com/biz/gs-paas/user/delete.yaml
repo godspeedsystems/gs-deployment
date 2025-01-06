@@ -1,0 +1,7 @@
+summary: Delete User
+tasks:
+  - id: gs-paas_user_delete
+    fn: datasource.gs-paas.User.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

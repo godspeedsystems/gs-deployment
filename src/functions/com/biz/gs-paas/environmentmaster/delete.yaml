@@ -1,0 +1,7 @@
+summary: Delete EnvironmentMaster
+tasks:
+  - id: gs-paas_environmentmaster_delete
+    fn: datasource.gs-paas.EnvironmentMaster.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,7 +1,0 @@
-summary: Delete Plan
-tasks:
-  - id: schema_plan_delete
-    fn: datasource.schema.Plan.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

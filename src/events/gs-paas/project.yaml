@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/project/{id}:
+  summary: Fetch Project
+  description: Fetch Project from database
+  fn: com.biz.gs-paas.project.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/project:
+  summary: Create a new Project
+  description: Create Project from database
+  fn: com.biz.gs-paas.project.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Project'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/project/{id}:
+  summary: Update a Project
+  description: Update Project from database
+  fn: com.biz.gs-paas.project.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Project'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/project/{id}:
+  summary: Delete a Project
+  description: Delete Project from database
+  fn: com.biz.gs-paas.project.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/project/search:
+  summary: Fetch multiple Project
+  description: Fetch multiple Project from database
+  fn: com.biz.gs-paas.project.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

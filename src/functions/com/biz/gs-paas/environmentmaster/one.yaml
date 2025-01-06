@@ -1,0 +1,7 @@
+summary: Fetch EnvironmentMaster
+tasks:
+  - id: gs-paas_environmentmaster_one
+    fn: datasource.gs-paas.EnvironmentMaster.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

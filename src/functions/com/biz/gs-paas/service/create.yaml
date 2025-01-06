@@ -1,0 +1,6 @@
+summary: Create Service
+tasks:
+  - id: gs-paas_service_create
+    fn: datasource.gs-paas.Service.create
+    args:
+      data: <% inputs.body %>

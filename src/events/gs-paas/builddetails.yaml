@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/builddetails/{id}:
+  summary: Fetch BuildDetails
+  description: Fetch BuildDetails from database
+  fn: com.biz.gs-paas.builddetails.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/builddetails:
+  summary: Create a new BuildDetails
+  description: Create BuildDetails from database
+  fn: com.biz.gs-paas.builddetails.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/BuildDetails'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/builddetails/{id}:
+  summary: Update a BuildDetails
+  description: Update BuildDetails from database
+  fn: com.biz.gs-paas.builddetails.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/BuildDetails'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/builddetails/{id}:
+  summary: Delete a BuildDetails
+  description: Delete BuildDetails from database
+  fn: com.biz.gs-paas.builddetails.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/builddetails/search:
+  summary: Fetch multiple BuildDetails
+  description: Fetch multiple BuildDetails from database
+  fn: com.biz.gs-paas.builddetails.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

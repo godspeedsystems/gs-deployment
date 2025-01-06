@@ -1,0 +1,7 @@
+summary: Delete VmGroup
+tasks:
+  - id: gs-paas_vmgroup_delete
+    fn: datasource.gs-paas.VmGroup.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

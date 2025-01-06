@@ -1,0 +1,7 @@
+summary: Fetch Deployment
+tasks:
+  - id: gs-paas_deployment_one
+    fn: datasource.gs-paas.Deployment.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,0 +1,7 @@
+summary: Fetch VmGroup
+tasks:
+  - id: gs-paas_vmgroup_one
+    fn: datasource.gs-paas.VmGroup.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

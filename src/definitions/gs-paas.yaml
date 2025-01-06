@@ -1,0 +1,307 @@
+User:
+  type: object
+  properties:
+    email:
+      type: string
+    name:
+      type: string
+      nullable: true
+    role:
+      type: string
+      default: USER
+      enum:
+        - USER
+        - ADMIN
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+Project:
+  type: object
+  properties:
+    name:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+Service:
+  type: object
+  properties:
+    name:
+      type: string
+    projectId:
+      type: integer
+    buildStrategy:
+      type: string
+      enum:
+        - ONCE
+        - EVERY
+    type:
+      type: string
+      default: MICROSERVICE
+      enum:
+        - MICROSERVICE
+    status:
+      type: string
+      default: Approved
+      enum:
+        - Approved
+        - Approved_Pending
+    repoUrl:
+      type: string
+    businessFunction:
+      type: string
+      nullable: true
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+EnvironmentMaster:
+  type: object
+  properties:
+    name:
+      type: string
+    manualBuild:
+      type: boolean
+    manualDeploy:
+      type: boolean
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+ProjectEnvironment:
+  type: object
+  properties:
+    name:
+      type: string
+    projectId:
+      type: integer
+    vaultAccessToken:
+      type: string
+      nullable: true
+    sonarAccessToken:
+      type: string
+      nullable: true
+    environmentMasterId:
+      type: integer
+    manualBuild:
+      type: boolean
+      default: true
+    manualDeploy:
+      type: boolean
+      default: true
+    hyperBuild:
+      type: boolean
+      default: false
+    clusterId:
+      type: integer
+    namespaceId:
+      type: integer
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+ServiceEnvironment:
+  type: object
+  properties:
+    serviceId:
+      type: integer
+    projectEnvironmentId:
+      type: integer
+    componentId:
+      type: integer
+    imageName:
+      type: string
+    envRoleAccess:
+      type: array
+      items:
+        type: string
+    manualBuild:
+      type: boolean
+      default: true
+    manualDeploy:
+      type: boolean
+      default: true
+    hyperBuild:
+      type: boolean
+      default: false
+    registryId:
+      type: integer
+    artifactName:
+      type: string
+    projectJobTemplateId:
+      type: integer
+    templateVersion:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+BuildDetails:
+  type: object
+  properties:
+    gitRepoId:
+      type: integer
+    typeLabel:
+      type: string
+      nullable: true
+    dockerfilePath:
+      type: string
+    depth:
+      type: integer
+      default: 1
+    shallowCloning:
+      type: boolean
+      default: true
+    customParameters:
+      type: object
+      nullable: true
+    buildxPlatform:
+      type: array
+      items:
+        type: string
+    branchName:
+      type: string
+    projectJobTemplateId:
+      type: integer
+      nullable: true
+    projectCiScopeId:
+      type: integer
+      nullable: true
+    sonarProjectKey:
+      type: string
+      nullable: true
+    queueName:
+      type: string
+      nullable: true
+    projectEnvironmentId:
+      type: integer
+    envCiBuildVariable:
+      type: object
+      nullable: true
+    envCiHook:
+      type: object
+      nullable: true
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+Deployment:
+  type: object
+  properties:
+    serviceName:
+      type: string
+    deploymentName:
+      type: string
+    deployVariableRawInput:
+      type: boolean
+      default: true
+    deploymentRollbackValidation:
+      type: boolean
+      default: true
+    deploymentNames:
+      type: array
+      items:
+        type: string
+    preHookEnabled:
+      type: boolean
+      default: false
+    postHookEnabled:
+      type: boolean
+      default: false
+    imagePullPolicy:
+      type: string
+      default: Always
+      enum:
+        - Always
+        - IfNotPresent
+        - Never
+    resourceKind:
+      type: string
+      default: job
+      enum:
+        - job
+        - deployment
+        - statefulset
+    envCdHook:
+      type: object
+      nullable: true
+    queueName:
+      type: string
+      nullable: true
+    manifestMetaData:
+      type: object
+      nullable: true
+    envCdDeploymentStrategy:
+      type: object
+      nullable: true
+    envCdDeployVariable:
+      type: object
+      nullable: true
+    projectEnvironmentId:
+      type: integer
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+Cluster:
+  type: object
+  properties:
+    name:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+Namespace:
+  type: object
+  properties:
+    name:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+Registry:
+  type: object
+  properties:
+    name:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+VmGroup:
+  type: object
+  properties:
+    name:
+      type: string
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time

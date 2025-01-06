@@ -1,6 +1,0 @@
-summary: Create ProviderType
-tasks:
-  - id: schema_providertype_create
-    fn: datasource.schema.ProviderType.create
-    args:
-      data: <% inputs.body %>

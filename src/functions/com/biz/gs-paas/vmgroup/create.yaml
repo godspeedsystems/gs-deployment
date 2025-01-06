@@ -1,0 +1,6 @@
+summary: Create VmGroup
+tasks:
+  - id: gs-paas_vmgroup_create
+    fn: datasource.gs-paas.VmGroup.create
+    args:
+      data: <% inputs.body %>

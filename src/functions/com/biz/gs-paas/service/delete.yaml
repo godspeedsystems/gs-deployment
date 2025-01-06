@@ -1,0 +1,7 @@
+summary: Delete Service
+tasks:
+  - id: gs-paas_service_delete
+    fn: datasource.gs-paas.Service.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,7 +1,0 @@
-summary: Fetch PricingPlan
-tasks:
-  - id: schema_pricingplan_one
-    fn: datasource.schema.PricingPlan.findUnique
-    args:
-      where:
-        id: <% inputs.params.id %>

@@ -1,7 +1,0 @@
-summary: Fetch ServiceSubtype
-tasks:
-  - id: schema_servicesubtype_one
-    fn: datasource.schema.ServiceSubtype.findUnique
-    args:
-      where:
-        id: <% inputs.params.id %>

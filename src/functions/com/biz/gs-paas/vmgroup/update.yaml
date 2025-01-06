@@ -1,0 +1,8 @@
+summary: Update VmGroup
+tasks:
+  - id: gs-paas_vmgroup_update
+    fn: datasource.gs-paas.VmGroup.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

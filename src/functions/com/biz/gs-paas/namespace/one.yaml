@@ -1,0 +1,7 @@
+summary: Fetch Namespace
+tasks:
+  - id: gs-paas_namespace_one
+    fn: datasource.gs-paas.Namespace.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

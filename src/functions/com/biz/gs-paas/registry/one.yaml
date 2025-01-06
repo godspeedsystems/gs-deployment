@@ -1,0 +1,7 @@
+summary: Fetch Registry
+tasks:
+  - id: gs-paas_registry_one
+    fn: datasource.gs-paas.Registry.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

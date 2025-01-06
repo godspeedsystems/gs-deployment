@@ -1,0 +1,8 @@
+summary: Update Namespace
+tasks:
+  - id: gs-paas_namespace_update
+    fn: datasource.gs-paas.Namespace.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

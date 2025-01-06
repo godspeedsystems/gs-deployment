@@ -1,0 +1,8 @@
+summary: Update User
+tasks:
+  - id: gs-paas_user_update
+    fn: datasource.gs-paas.User.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

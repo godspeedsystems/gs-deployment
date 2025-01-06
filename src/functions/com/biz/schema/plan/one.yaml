@@ -1,7 +1,0 @@
-summary: Fetch Plan
-tasks:
-  - id: schema_plan_one
-    fn: datasource.schema.Plan.findUnique
-    args:
-      where:
-        id: <% inputs.params.id %>

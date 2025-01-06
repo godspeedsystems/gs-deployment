@@ -1,5 +1,0 @@
-summary: Fetch many Provider
-tasks:
-  - id: schema_provider_search
-    fn: datasource.schema.Provider.findMany
-    args: {}

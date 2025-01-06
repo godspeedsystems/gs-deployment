@@ -1,0 +1,5 @@
+summary: Fetch many EnvironmentMaster
+tasks:
+  - id: gs-paas_environmentmaster_search
+    fn: datasource.gs-paas.EnvironmentMaster.findMany
+    args: {}

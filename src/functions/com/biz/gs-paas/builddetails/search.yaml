@@ -1,0 +1,5 @@
+summary: Fetch many BuildDetails
+tasks:
+  - id: gs-paas_builddetails_search
+    fn: datasource.gs-paas.BuildDetails.findMany
+    args: {}

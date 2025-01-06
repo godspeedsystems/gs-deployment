@@ -1,0 +1,7 @@
+summary: Fetch User
+tasks:
+  - id: gs-paas_user_one
+    fn: datasource.gs-paas.User.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,0 +1,6 @@
+summary: Create User
+tasks:
+  - id: gs-paas_user_create
+    fn: datasource.gs-paas.User.create
+    args:
+      data: <% inputs.body %>

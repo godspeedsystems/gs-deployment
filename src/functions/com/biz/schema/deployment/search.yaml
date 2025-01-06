@@ -1,5 +1,0 @@
-summary: Fetch many Deployment
-tasks:
-  - id: schema_deployment_search
-    fn: datasource.schema.Deployment.findMany
-    args: {}

@@ -1,7 +1,0 @@
-summary: Fetch MonitoringConfig
-tasks:
-  - id: schema_monitoringconfig_one
-    fn: datasource.schema.MonitoringConfig.findUnique
-    args:
-      where:
-        id: <% inputs.params.id %>

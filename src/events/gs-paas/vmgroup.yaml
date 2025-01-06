@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/vmgroup/{id}:
+  summary: Fetch VmGroup
+  description: Fetch VmGroup from database
+  fn: com.biz.gs-paas.vmgroup.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/vmgroup:
+  summary: Create a new VmGroup
+  description: Create VmGroup from database
+  fn: com.biz.gs-paas.vmgroup.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/VmGroup'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/vmgroup/{id}:
+  summary: Update a VmGroup
+  description: Update VmGroup from database
+  fn: com.biz.gs-paas.vmgroup.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/VmGroup'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/vmgroup/{id}:
+  summary: Delete a VmGroup
+  description: Delete VmGroup from database
+  fn: com.biz.gs-paas.vmgroup.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/vmgroup/search:
+  summary: Fetch multiple VmGroup
+  description: Fetch multiple VmGroup from database
+  fn: com.biz.gs-paas.vmgroup.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

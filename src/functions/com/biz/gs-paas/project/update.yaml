@@ -1,0 +1,8 @@
+summary: Update Project
+tasks:
+  - id: gs-paas_project_update
+    fn: datasource.gs-paas.Project.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

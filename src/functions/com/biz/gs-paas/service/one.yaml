@@ -1,0 +1,7 @@
+summary: Fetch Service
+tasks:
+  - id: gs-paas_service_one
+    fn: datasource.gs-paas.Service.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

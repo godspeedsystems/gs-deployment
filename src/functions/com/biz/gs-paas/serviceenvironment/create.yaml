@@ -1,0 +1,6 @@
+summary: Create ServiceEnvironment
+tasks:
+  - id: gs-paas_serviceenvironment_create
+    fn: datasource.gs-paas.ServiceEnvironment.create
+    args:
+      data: <% inputs.body %>

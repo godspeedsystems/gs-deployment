@@ -1,0 +1,7 @@
+summary: Fetch ProjectEnvironment
+tasks:
+  - id: gs-paas_projectenvironment_one
+    fn: datasource.gs-paas.ProjectEnvironment.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

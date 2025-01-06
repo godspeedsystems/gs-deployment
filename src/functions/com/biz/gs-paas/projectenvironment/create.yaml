@@ -1,0 +1,6 @@
+summary: Create ProjectEnvironment
+tasks:
+  - id: gs-paas_projectenvironment_create
+    fn: datasource.gs-paas.ProjectEnvironment.create
+    args:
+      data: <% inputs.body %>

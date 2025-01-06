@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/serviceenvironment/{id}:
+  summary: Fetch ServiceEnvironment
+  description: Fetch ServiceEnvironment from database
+  fn: com.biz.gs-paas.serviceenvironment.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/serviceenvironment:
+  summary: Create a new ServiceEnvironment
+  description: Create ServiceEnvironment from database
+  fn: com.biz.gs-paas.serviceenvironment.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/ServiceEnvironment'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/serviceenvironment/{id}:
+  summary: Update a ServiceEnvironment
+  description: Update ServiceEnvironment from database
+  fn: com.biz.gs-paas.serviceenvironment.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/ServiceEnvironment'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/serviceenvironment/{id}:
+  summary: Delete a ServiceEnvironment
+  description: Delete ServiceEnvironment from database
+  fn: com.biz.gs-paas.serviceenvironment.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/serviceenvironment/search:
+  summary: Fetch multiple ServiceEnvironment
+  description: Fetch multiple ServiceEnvironment from database
+  fn: com.biz.gs-paas.serviceenvironment.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

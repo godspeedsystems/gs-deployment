@@ -1,0 +1,6 @@
+summary: Create Deployment
+tasks:
+  - id: gs-paas_deployment_create
+    fn: datasource.gs-paas.Deployment.create
+    args:
+      data: <% inputs.body %>

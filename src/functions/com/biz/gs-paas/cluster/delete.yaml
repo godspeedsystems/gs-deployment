@@ -1,0 +1,7 @@
+summary: Delete Cluster
+tasks:
+  - id: gs-paas_cluster_delete
+    fn: datasource.gs-paas.Cluster.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

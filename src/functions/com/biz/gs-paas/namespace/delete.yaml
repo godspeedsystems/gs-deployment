@@ -1,0 +1,7 @@
+summary: Delete Namespace
+tasks:
+  - id: gs-paas_namespace_delete
+    fn: datasource.gs-paas.Namespace.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

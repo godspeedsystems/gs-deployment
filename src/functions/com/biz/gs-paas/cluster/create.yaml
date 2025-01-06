@@ -1,0 +1,6 @@
+summary: Create Cluster
+tasks:
+  - id: gs-paas_cluster_create
+    fn: datasource.gs-paas.Cluster.create
+    args:
+      data: <% inputs.body %>

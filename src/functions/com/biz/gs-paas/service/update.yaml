@@ -1,0 +1,8 @@
+summary: Update Service
+tasks:
+  - id: gs-paas_service_update
+    fn: datasource.gs-paas.Service.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

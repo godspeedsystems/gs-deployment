@@ -1,0 +1,8 @@
+summary: Update Cluster
+tasks:
+  - id: gs-paas_cluster_update
+    fn: datasource.gs-paas.Cluster.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

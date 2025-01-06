@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/namespace/{id}:
+  summary: Fetch Namespace
+  description: Fetch Namespace from database
+  fn: com.biz.gs-paas.namespace.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/namespace:
+  summary: Create a new Namespace
+  description: Create Namespace from database
+  fn: com.biz.gs-paas.namespace.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Namespace'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/namespace/{id}:
+  summary: Update a Namespace
+  description: Update Namespace from database
+  fn: com.biz.gs-paas.namespace.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Namespace'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/namespace/{id}:
+  summary: Delete a Namespace
+  description: Delete Namespace from database
+  fn: com.biz.gs-paas.namespace.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/namespace/search:
+  summary: Fetch multiple Namespace
+  description: Fetch multiple Namespace from database
+  fn: com.biz.gs-paas.namespace.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

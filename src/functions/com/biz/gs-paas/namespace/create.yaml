@@ -1,0 +1,6 @@
+summary: Create Namespace
+tasks:
+  - id: gs-paas_namespace_create
+    fn: datasource.gs-paas.Namespace.create
+    args:
+      data: <% inputs.body %>

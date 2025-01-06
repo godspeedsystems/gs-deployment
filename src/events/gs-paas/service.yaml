@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/service/{id}:
+  summary: Fetch Service
+  description: Fetch Service from database
+  fn: com.biz.gs-paas.service.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/service:
+  summary: Create a new Service
+  description: Create Service from database
+  fn: com.biz.gs-paas.service.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Service'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/service/{id}:
+  summary: Update a Service
+  description: Update Service from database
+  fn: com.biz.gs-paas.service.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/Service'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/service/{id}:
+  summary: Delete a Service
+  description: Delete Service from database
+  fn: com.biz.gs-paas.service.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/service/search:
+  summary: Fetch multiple Service
+  description: Fetch multiple Service from database
+  fn: com.biz.gs-paas.service.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

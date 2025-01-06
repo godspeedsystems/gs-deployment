@@ -1,7 +1,0 @@
-summary: Delete PricingPlan
-tasks:
-  - id: schema_pricingplan_delete
-    fn: datasource.schema.PricingPlan.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

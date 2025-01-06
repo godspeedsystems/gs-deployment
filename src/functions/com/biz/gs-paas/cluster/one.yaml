@@ -1,0 +1,7 @@
+summary: Fetch Cluster
+tasks:
+  - id: gs-paas_cluster_one
+    fn: datasource.gs-paas.Cluster.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

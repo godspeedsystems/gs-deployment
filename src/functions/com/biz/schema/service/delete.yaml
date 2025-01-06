@@ -1,7 +1,0 @@
-summary: Delete Service
-tasks:
-  - id: schema_service_delete
-    fn: datasource.schema.Service.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

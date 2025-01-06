@@ -1,0 +1,6 @@
+summary: Create Project
+tasks:
+  - id: gs-paas_project_create
+    fn: datasource.gs-paas.Project.create
+    args:
+      data: <% inputs.body %>

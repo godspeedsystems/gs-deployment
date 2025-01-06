@@ -1,0 +1,6 @@
+summary: Create Registry
+tasks:
+  - id: gs-paas_registry_create
+    fn: datasource.gs-paas.Registry.create
+    args:
+      data: <% inputs.body %>

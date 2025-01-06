@@ -1,0 +1,8 @@
+summary: Update Registry
+tasks:
+  - id: gs-paas_registry_update
+    fn: datasource.gs-paas.Registry.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

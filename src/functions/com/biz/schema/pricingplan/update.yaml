@@ -1,8 +1,0 @@
-summary: Update PricingPlan
-tasks:
-  - id: schema_pricingplan_update
-    fn: datasource.schema.PricingPlan.update
-    args:
-      where:
-        id: <% inputs.params.id %>
-      data: <% inputs.body %>

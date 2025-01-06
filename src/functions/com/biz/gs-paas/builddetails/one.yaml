@@ -1,0 +1,7 @@
+summary: Fetch BuildDetails
+tasks:
+  - id: gs-paas_builddetails_one
+    fn: datasource.gs-paas.BuildDetails.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

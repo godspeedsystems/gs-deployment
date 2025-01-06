@@ -1,6 +1,0 @@
-summary: Create Environment
-tasks:
-  - id: schema_environment_create
-    fn: datasource.schema.Environment.create
-    args:
-      data: <% inputs.body %>

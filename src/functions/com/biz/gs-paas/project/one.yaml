@@ -1,0 +1,7 @@
+summary: Fetch Project
+tasks:
+  - id: gs-paas_project_one
+    fn: datasource.gs-paas.Project.findUnique
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,0 +1,7 @@
+summary: Delete Deployment
+tasks:
+  - id: gs-paas_deployment_delete
+    fn: datasource.gs-paas.Deployment.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

@@ -1,0 +1,5 @@
+summary: Fetch many Cluster
+tasks:
+  - id: gs-paas_cluster_search
+    fn: datasource.gs-paas.Cluster.findMany
+    args: {}

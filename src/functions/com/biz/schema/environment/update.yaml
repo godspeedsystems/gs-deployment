@@ -1,8 +1,0 @@
-summary: Update Environment
-tasks:
-  - id: schema_environment_update
-    fn: datasource.schema.Environment.update
-    args:
-      where:
-        id: <% inputs.params.id %>
-      data: <% inputs.body %>

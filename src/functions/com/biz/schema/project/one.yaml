@@ -1,7 +1,0 @@
-summary: Fetch Project
-tasks:
-  - id: schema_project_one
-    fn: datasource.schema.Project.findUnique
-    args:
-      where:
-        id: <% inputs.params.id %>

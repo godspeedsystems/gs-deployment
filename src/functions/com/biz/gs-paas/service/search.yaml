@@ -1,0 +1,5 @@
+summary: Fetch many Service
+tasks:
+  - id: gs-paas_service_search
+    fn: datasource.gs-paas.Service.findMany
+    args: {}

@@ -1,7 +1,0 @@
-summary: Delete ServiceSubtype
-tasks:
-  - id: schema_servicesubtype_delete
-    fn: datasource.schema.ServiceSubtype.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

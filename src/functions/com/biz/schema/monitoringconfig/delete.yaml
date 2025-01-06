@@ -1,7 +1,0 @@
-summary: Delete MonitoringConfig
-tasks:
-  - id: schema_monitoringconfig_delete
-    fn: datasource.schema.MonitoringConfig.delete
-    args:
-      where:
-        id: <% inputs.params.id %>

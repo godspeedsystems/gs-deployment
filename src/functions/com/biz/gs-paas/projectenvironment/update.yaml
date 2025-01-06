@@ -1,0 +1,8 @@
+summary: Update ProjectEnvironment
+tasks:
+  - id: gs-paas_projectenvironment_update
+    fn: datasource.gs-paas.ProjectEnvironment.update
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>
+      data: <% inputs.body %>

@@ -1,7 +1,0 @@
-summary: Fetch Provider
-tasks:
-  - id: schema_provider_one
-    fn: datasource.schema.Provider.findUnique
-    args:
-      where:
-        id: <% inputs.params.id %>

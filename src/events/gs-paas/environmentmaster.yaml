@@ -1,0 +1,93 @@
+# ONE
+http.get./gs-paas/environmentmaster/{id}:
+  summary: Fetch EnvironmentMaster
+  description: Fetch EnvironmentMaster from database
+  fn: com.biz.gs-paas.environmentmaster.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# CREATE
+http.post./gs-paas/environmentmaster:
+  summary: Create a new EnvironmentMaster
+  description: Create EnvironmentMaster from database
+  fn: com.biz.gs-paas.environmentmaster.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/EnvironmentMaster'
+  responses:
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# UPDATE
+http.put./gs-paas/environmentmaster/{id}:
+  summary: Update a EnvironmentMaster
+  description: Update EnvironmentMaster from database
+  fn: com.biz.gs-paas.environmentmaster.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/gs-paas/EnvironmentMaster'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# DELETE
+http.delete./gs-paas/environmentmaster/{id}:
+  summary: Delete a EnvironmentMaster
+  description: Delete EnvironmentMaster from database
+  fn: com.biz.gs-paas.environmentmaster.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '202':
+      content:
+        application/json:
+          schema:
+            type: object
+
+# SEARCH
+http.post./gs-paas/environmentmaster/search:
+  summary: Fetch multiple EnvironmentMaster
+  description: Fetch multiple EnvironmentMaster from database
+  fn: com.biz.gs-paas.environmentmaster.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: array
+

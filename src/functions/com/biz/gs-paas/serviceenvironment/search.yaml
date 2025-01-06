@@ -1,0 +1,5 @@
+summary: Fetch many ServiceEnvironment
+tasks:
+  - id: gs-paas_serviceenvironment_search
+    fn: datasource.gs-paas.ServiceEnvironment.findMany
+    args: {}

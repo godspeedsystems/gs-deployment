@@ -1,0 +1,6 @@
+summary: Create BuildDetails
+tasks:
+  - id: gs-paas_builddetails_create
+    fn: datasource.gs-paas.BuildDetails.create
+    args:
+      data: <% inputs.body %>

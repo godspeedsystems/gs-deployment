@@ -1,0 +1,7 @@
+summary: Delete ProjectEnvironment
+tasks:
+  - id: gs-paas_projectenvironment_delete
+    fn: datasource.gs-paas.ProjectEnvironment.delete
+    args:
+      where:
+        id: <% parseInt(inputs.params.id) %>

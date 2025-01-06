@@ -1,0 +1,5 @@
+summary: Fetch many VmGroup
+tasks:
+  - id: gs-paas_vmgroup_search
+    fn: datasource.gs-paas.VmGroup.findMany
+    args: {}

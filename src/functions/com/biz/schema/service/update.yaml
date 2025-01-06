@@ -1,8 +1,0 @@
-summary: Update Service
-tasks:
-  - id: schema_service_update
-    fn: datasource.schema.Service.update
-    args:
-      where:
-        id: <% inputs.params.id %>
-      data: <% inputs.body %>
