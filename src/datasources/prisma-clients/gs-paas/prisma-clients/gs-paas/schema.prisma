@@ -1,0 +1,240 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./prisma-clients/gs-paas"
+  previewFeatures = ["metrics"]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum BuildStrategy {
+  ONCE
+  EVERY
+}
+
+enum ServiceType {
+  MICROSERVICE
+}
+
+enum ServiceStatus {
+  Approved
+  Approved_Pending
+}
+
+enum ImagePullPolicy {
+  Always
+  IfNotPresent
+  Never
+}
+
+enum ResourceKind {
+  job
+  deployment
+  statefulset
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Project {
+  id                  Int                  @id @default(autoincrement())
+  name                String               @unique
+  services            Service[]
+  projectEnvironments ProjectEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("projects")
+}
+
+model Service {
+  id                  Int                  @id @default(autoincrement())
+  name                String               @unique
+  projectId           Int
+  buildStrategy       BuildStrategy
+  type                ServiceType          @default(MICROSERVICE)
+  status              ServiceStatus        @default(Approved)
+  repoUrl             String
+  businessFunction    BusinessFunction[]
+  project             Project              @relation(fields: [projectId], references: [id])
+  serviceEnvironments ServiceEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("services")
+}
+
+model BusinessFunction {
+  id        Int     @id @default(autoincrement())
+  name      String
+  serviceId Int
+  services  Service @relation(fields: [serviceId], references: [id])
+
+  @@map("business_functions")
+}
+
+model EnvironmentMaster {
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  manualBuild         Boolean
+  manualDeploy        Boolean
+  projectEnvironments ProjectEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("environment_masters")
+}
+
+model ProjectEnvironment {
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  projectId           Int
+  vaultAccessToken    String?
+  sonarAccessToken    String?
+  environmentMasterId Int
+  manualBuild         Boolean              @default(true)
+  manualDeploy        Boolean              @default(true)
+  hyperBuild          Boolean              @default(false)
+  clusterId           Int
+  namespaceId         Int
+  project             Project              @relation(fields: [projectId], references: [id])
+  environmentMaster   EnvironmentMaster    @relation(fields: [environmentMasterId], references: [id])
+  cluster             Cluster              @relation(fields: [clusterId], references: [id])
+  namespace           Namespace            @relation(fields: [namespaceId], references: [id])
+  registries          Registry[]
+  vmGroups            VmGroup[]
+  serviceEnvironments ServiceEnvironment[]
+  builds              BuildDetails[]
+  deployments         Deployment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("project_environments")
+}
+
+model ServiceEnvironment {
+  id                   Int                @id @default(autoincrement())
+  serviceId            Int
+  projectEnvironmentId Int
+  componentId          Int
+  imageName            String
+  envRoleAccess        String[]
+  manualBuild          Boolean            @default(true)
+  manualDeploy         Boolean            @default(true)
+  hyperBuild           Boolean            @default(false)
+  registryId           Int
+  artifactName         String
+  projectJobTemplateId Int
+  templateVersion      String
+  service              Service            @relation(fields: [serviceId], references: [id])
+  projectEnvironment   ProjectEnvironment @relation(fields: [projectEnvironmentId], references: [id])
+  registry             Registry           @relation(fields: [registryId], references: [id])
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@map("service_environments")
+}
+
+model BuildDetails {
+  id                   Int                @id @default(autoincrement())
+  gitRepoId            Int
+  typeLabel            String?
+  dockerfilePath       String
+  depth                Int                @default(1)
+  shallowCloning       Boolean            @default(true)
+  customParameters     Json?
+  buildxPlatform       String[]           @default([])
+  branchName           String
+  projectJobTemplateId Int?
+  projectCiScopeId     Int?
+  sonarProjectKey      String?
+  queueName            String?
+  projectEnvironmentId Int
+  envCiBuildVariable   Json               @default("[]")
+  envCiHook            Json               @default("[]")
+  projectEnvironment   ProjectEnvironment @relation(fields: [projectEnvironmentId], references: [id])
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@map("builds")
+}
+
+model Deployment {
+  id                           Int                @id @default(autoincrement())
+  serviceName                  String
+  deploymentName               String
+  deployVariableRawInput       Boolean            @default(true)
+  deploymentRollbackValidation Boolean            @default(true)
+  deploymentNames              String[]           @default([])
+  preHookEnabled               Boolean            @default(false)
+  postHookEnabled              Boolean            @default(false)
+  imagePullPolicy              ImagePullPolicy    @default(Always)
+  resourceKind                 ResourceKind       @default(job)
+  envCdHook                    Json               @default("[]")
+  queueName                    String?
+  manifestMetaData             Json               @default("{}")
+  envCdDeploymentStrategy      Json               @default("{}")
+  envCdDeployVariable          Json               @default("[]")
+  projectEnvironmentId         Int
+  projectEnvironment           ProjectEnvironment @relation(fields: [projectEnvironmentId], references: [id])
+  createdAt                    DateTime           @default(now())
+  updatedAt                    DateTime           @updatedAt
+
+  @@map("deployments")
+}
+
+model Cluster {
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  projectEnvironments ProjectEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("clusters")
+}
+
+model Namespace {
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  projectEnvironments ProjectEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("namespaces")
+}
+
+model Registry {
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  projectEnvironments ProjectEnvironment[]
+  serviceEnvironments ServiceEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("registries")
+}
+
+model VmGroup {
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  projectEnvironments ProjectEnvironment[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@map("vm_groups")
+}

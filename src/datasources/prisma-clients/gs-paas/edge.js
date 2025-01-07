@@ -323,7 +323,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/trip/git/godspeedRepo/gs-deployment/src/datasources/prisma-clients/gs-paas",
+      "value": "D:\\gs-deployment\\src\\datasources\\prisma-clients\\gs-paas",
       "fromEnvVar": null
     },
     "config": {
@@ -332,14 +332,14 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [
       "metrics"
     ],
-    "sourceFilePath": "/Users/trip/git/godspeedRepo/gs-deployment/src/datasources/gs-paas.prisma",
+    "sourceFilePath": "D:\\gs-deployment\\src\\datasources\\gs-paas.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

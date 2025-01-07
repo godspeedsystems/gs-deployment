@@ -324,7 +324,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/trip/git/godspeedRepo/gs-deployment/src/datasources/prisma-clients/gs-paas",
+      "value": "D:\\gs-deployment\\src\\datasources\\prisma-clients\\gs-paas",
       "fromEnvVar": null
     },
     "config": {
@@ -333,14 +333,14 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [
       "metrics"
     ],
-    "sourceFilePath": "/Users/trip/git/godspeedRepo/gs-deployment/src/datasources/gs-paas.prisma",
+    "sourceFilePath": "D:\\gs-deployment\\src\\datasources\\gs-paas.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -401,8 +401,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
-path.join(process.cwd(), "src/datasources/prisma-clients/gs-paas/libquery_engine-darwin-arm64.dylib.node")
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "src/datasources/prisma-clients/gs-paas/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/datasources/prisma-clients/gs-paas/schema.prisma")
