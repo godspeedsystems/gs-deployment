@@ -29,6 +29,13 @@ Project:
     updatedAt:
       type: string
       format: date-time
+BusinessFunction:
+  type: object
+  properties:
+    name:
+      type: string
+    serviceId:
+      type: integer
 Service:
   type: object
   properties:
@@ -41,28 +48,19 @@ Service:
       enum:
         - ONCE
         - EVERY
-    type:
-      type: string
-      default: MICROSERVICE
-      enum:
-        - MICROSERVICE
-    status:
-      type: string
-      default: Approved
-      enum:
-        - Approved
-        - Approved_Pending
+    # type:
+    #   type: string
+    #   default: MICROSERVICE
+    #   enum:
+    #     - MICROSERVICE
+    # status:
+    #   type: string
+    #   default: Approved
+    #   enum:
+    #     - Approved
+    #     - Approved_Pending
     repoUrl:
       type: string
-    businessFunction:
-      type: string
-      nullable: true
-    createdAt:
-      type: string
-      format: date-time
-    updatedAt:
-      type: string
-      format: date-time
 EnvironmentMaster:
   type: object
   properties:

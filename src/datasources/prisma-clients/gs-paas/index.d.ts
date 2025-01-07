@@ -29,6 +29,11 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  */
 export type Service = $Result.DefaultSelection<Prisma.$ServicePayload>
 /**
+ * Model BusinessFunction
+ * 
+ */
+export type BusinessFunction = $Result.DefaultSelection<Prisma.$BusinessFunctionPayload>
+/**
  * Model EnvironmentMaster
  * 
  */
@@ -315,6 +320,16 @@ export class PrismaClient<
     * ```
     */
   get service(): Prisma.ServiceDelegate<ExtArgs>;
+
+  /**
+   * `prisma.businessFunction`: Exposes CRUD operations for the **BusinessFunction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BusinessFunctions
+    * const businessFunctions = await prisma.businessFunction.findMany()
+    * ```
+    */
+  get businessFunction(): Prisma.BusinessFunctionDelegate<ExtArgs>;
 
   /**
    * `prisma.environmentMaster`: Exposes CRUD operations for the **EnvironmentMaster** model.
@@ -849,6 +864,7 @@ export namespace Prisma {
     User: 'User',
     Project: 'Project',
     Service: 'Service',
+    BusinessFunction: 'BusinessFunction',
     EnvironmentMaster: 'EnvironmentMaster',
     ProjectEnvironment: 'ProjectEnvironment',
     ServiceEnvironment: 'ServiceEnvironment',
@@ -873,7 +889,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "project" | "service" | "environmentMaster" | "projectEnvironment" | "serviceEnvironment" | "buildDetails" | "deployment" | "cluster" | "namespace" | "registry" | "vmGroup"
+      modelProps: "user" | "project" | "service" | "businessFunction" | "environmentMaster" | "projectEnvironment" | "serviceEnvironment" | "buildDetails" | "deployment" | "cluster" | "namespace" | "registry" | "vmGroup"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1084,6 +1100,76 @@ export namespace Prisma {
           count: {
             args: Prisma.ServiceCountArgs<ExtArgs>
             result: $Utils.Optional<ServiceCountAggregateOutputType> | number
+          }
+        }
+      }
+      BusinessFunction: {
+        payload: Prisma.$BusinessFunctionPayload<ExtArgs>
+        fields: Prisma.BusinessFunctionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BusinessFunctionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BusinessFunctionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>
+          }
+          findFirst: {
+            args: Prisma.BusinessFunctionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BusinessFunctionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>
+          }
+          findMany: {
+            args: Prisma.BusinessFunctionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>[]
+          }
+          create: {
+            args: Prisma.BusinessFunctionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>
+          }
+          createMany: {
+            args: Prisma.BusinessFunctionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BusinessFunctionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>[]
+          }
+          delete: {
+            args: Prisma.BusinessFunctionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>
+          }
+          update: {
+            args: Prisma.BusinessFunctionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>
+          }
+          deleteMany: {
+            args: Prisma.BusinessFunctionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BusinessFunctionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BusinessFunctionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusinessFunctionPayload>
+          }
+          aggregate: {
+            args: Prisma.BusinessFunctionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBusinessFunction>
+          }
+          groupBy: {
+            args: Prisma.BusinessFunctionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BusinessFunctionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BusinessFunctionCountArgs<ExtArgs>
+            result: $Utils.Optional<BusinessFunctionCountAggregateOutputType> | number
           }
         }
       }
@@ -1918,10 +2004,12 @@ export namespace Prisma {
    */
 
   export type ServiceCountOutputType = {
+    businessFunction: number
     serviceEnvironments: number
   }
 
   export type ServiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    businessFunction?: boolean | ServiceCountOutputTypeCountBusinessFunctionArgs
     serviceEnvironments?: boolean | ServiceCountOutputTypeCountServiceEnvironmentsArgs
   }
 
@@ -1934,6 +2022,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the ServiceCountOutputType
      */
     select?: ServiceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServiceCountOutputType without action
+   */
+  export type ServiceCountOutputTypeCountBusinessFunctionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BusinessFunctionWhereInput
   }
 
   /**
@@ -4127,7 +4222,6 @@ export namespace Prisma {
     type: $Enums.ServiceType | null
     status: $Enums.ServiceStatus | null
     repoUrl: string | null
-    businessFunction: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4140,7 +4234,6 @@ export namespace Prisma {
     type: $Enums.ServiceType | null
     status: $Enums.ServiceStatus | null
     repoUrl: string | null
-    businessFunction: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4153,7 +4246,6 @@ export namespace Prisma {
     type: number
     status: number
     repoUrl: number
-    businessFunction: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4178,7 +4270,6 @@ export namespace Prisma {
     type?: true
     status?: true
     repoUrl?: true
-    businessFunction?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4191,7 +4282,6 @@ export namespace Prisma {
     type?: true
     status?: true
     repoUrl?: true
-    businessFunction?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4204,7 +4294,6 @@ export namespace Prisma {
     type?: true
     status?: true
     repoUrl?: true
-    businessFunction?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4304,7 +4393,6 @@ export namespace Prisma {
     type: $Enums.ServiceType
     status: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction: string | null
     createdAt: Date
     updatedAt: Date
     _count: ServiceCountAggregateOutputType | null
@@ -4336,9 +4424,9 @@ export namespace Prisma {
     type?: boolean
     status?: boolean
     repoUrl?: boolean
-    businessFunction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    businessFunction?: boolean | Service$businessFunctionArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     serviceEnvironments?: boolean | Service$serviceEnvironmentsArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
@@ -4352,7 +4440,6 @@ export namespace Prisma {
     type?: boolean
     status?: boolean
     repoUrl?: boolean
-    businessFunction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
@@ -4366,12 +4453,12 @@ export namespace Prisma {
     type?: boolean
     status?: boolean
     repoUrl?: boolean
-    businessFunction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
   export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    businessFunction?: boolean | Service$businessFunctionArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     serviceEnvironments?: boolean | Service$serviceEnvironmentsArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
@@ -4383,6 +4470,7 @@ export namespace Prisma {
   export type $ServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Service"
     objects: {
+      businessFunction: Prisma.$BusinessFunctionPayload<ExtArgs>[]
       project: Prisma.$ProjectPayload<ExtArgs>
       serviceEnvironments: Prisma.$ServiceEnvironmentPayload<ExtArgs>[]
     }
@@ -4394,7 +4482,6 @@ export namespace Prisma {
       type: $Enums.ServiceType
       status: $Enums.ServiceStatus
       repoUrl: string
-      businessFunction: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["service"]>
@@ -4761,6 +4848,7 @@ export namespace Prisma {
    */
   export interface Prisma__ServiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    businessFunction<T extends Service$businessFunctionArgs<ExtArgs> = {}>(args?: Subset<T, Service$businessFunctionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "findMany"> | Null>
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     serviceEnvironments<T extends Service$serviceEnvironmentsArgs<ExtArgs> = {}>(args?: Subset<T, Service$serviceEnvironmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServiceEnvironmentPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -4799,7 +4887,6 @@ export namespace Prisma {
     readonly type: FieldRef<"Service", 'ServiceType'>
     readonly status: FieldRef<"Service", 'ServiceStatus'>
     readonly repoUrl: FieldRef<"Service", 'String'>
-    readonly businessFunction: FieldRef<"Service", 'String'>
     readonly createdAt: FieldRef<"Service", 'DateTime'>
     readonly updatedAt: FieldRef<"Service", 'DateTime'>
   }
@@ -5120,6 +5207,26 @@ export namespace Prisma {
   }
 
   /**
+   * Service.businessFunction
+   */
+  export type Service$businessFunctionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    where?: BusinessFunctionWhereInput
+    orderBy?: BusinessFunctionOrderByWithRelationInput | BusinessFunctionOrderByWithRelationInput[]
+    cursor?: BusinessFunctionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BusinessFunctionScalarFieldEnum | BusinessFunctionScalarFieldEnum[]
+  }
+
+  /**
    * Service.serviceEnvironments
    */
   export type Service$serviceEnvironmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5151,6 +5258,953 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ServiceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BusinessFunction
+   */
+
+  export type AggregateBusinessFunction = {
+    _count: BusinessFunctionCountAggregateOutputType | null
+    _avg: BusinessFunctionAvgAggregateOutputType | null
+    _sum: BusinessFunctionSumAggregateOutputType | null
+    _min: BusinessFunctionMinAggregateOutputType | null
+    _max: BusinessFunctionMaxAggregateOutputType | null
+  }
+
+  export type BusinessFunctionAvgAggregateOutputType = {
+    id: number | null
+    serviceId: number | null
+  }
+
+  export type BusinessFunctionSumAggregateOutputType = {
+    id: number | null
+    serviceId: number | null
+  }
+
+  export type BusinessFunctionMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    serviceId: number | null
+  }
+
+  export type BusinessFunctionMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    serviceId: number | null
+  }
+
+  export type BusinessFunctionCountAggregateOutputType = {
+    id: number
+    name: number
+    serviceId: number
+    _all: number
+  }
+
+
+  export type BusinessFunctionAvgAggregateInputType = {
+    id?: true
+    serviceId?: true
+  }
+
+  export type BusinessFunctionSumAggregateInputType = {
+    id?: true
+    serviceId?: true
+  }
+
+  export type BusinessFunctionMinAggregateInputType = {
+    id?: true
+    name?: true
+    serviceId?: true
+  }
+
+  export type BusinessFunctionMaxAggregateInputType = {
+    id?: true
+    name?: true
+    serviceId?: true
+  }
+
+  export type BusinessFunctionCountAggregateInputType = {
+    id?: true
+    name?: true
+    serviceId?: true
+    _all?: true
+  }
+
+  export type BusinessFunctionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BusinessFunction to aggregate.
+     */
+    where?: BusinessFunctionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusinessFunctions to fetch.
+     */
+    orderBy?: BusinessFunctionOrderByWithRelationInput | BusinessFunctionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BusinessFunctionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusinessFunctions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusinessFunctions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BusinessFunctions
+    **/
+    _count?: true | BusinessFunctionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BusinessFunctionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BusinessFunctionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BusinessFunctionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BusinessFunctionMaxAggregateInputType
+  }
+
+  export type GetBusinessFunctionAggregateType<T extends BusinessFunctionAggregateArgs> = {
+        [P in keyof T & keyof AggregateBusinessFunction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBusinessFunction[P]>
+      : GetScalarType<T[P], AggregateBusinessFunction[P]>
+  }
+
+
+
+
+  export type BusinessFunctionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BusinessFunctionWhereInput
+    orderBy?: BusinessFunctionOrderByWithAggregationInput | BusinessFunctionOrderByWithAggregationInput[]
+    by: BusinessFunctionScalarFieldEnum[] | BusinessFunctionScalarFieldEnum
+    having?: BusinessFunctionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BusinessFunctionCountAggregateInputType | true
+    _avg?: BusinessFunctionAvgAggregateInputType
+    _sum?: BusinessFunctionSumAggregateInputType
+    _min?: BusinessFunctionMinAggregateInputType
+    _max?: BusinessFunctionMaxAggregateInputType
+  }
+
+  export type BusinessFunctionGroupByOutputType = {
+    id: number
+    name: string
+    serviceId: number
+    _count: BusinessFunctionCountAggregateOutputType | null
+    _avg: BusinessFunctionAvgAggregateOutputType | null
+    _sum: BusinessFunctionSumAggregateOutputType | null
+    _min: BusinessFunctionMinAggregateOutputType | null
+    _max: BusinessFunctionMaxAggregateOutputType | null
+  }
+
+  type GetBusinessFunctionGroupByPayload<T extends BusinessFunctionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BusinessFunctionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BusinessFunctionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BusinessFunctionGroupByOutputType[P]>
+            : GetScalarType<T[P], BusinessFunctionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BusinessFunctionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    serviceId?: boolean
+    services?: boolean | ServiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["businessFunction"]>
+
+  export type BusinessFunctionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    serviceId?: boolean
+    services?: boolean | ServiceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["businessFunction"]>
+
+  export type BusinessFunctionSelectScalar = {
+    id?: boolean
+    name?: boolean
+    serviceId?: boolean
+  }
+
+  export type BusinessFunctionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    services?: boolean | ServiceDefaultArgs<ExtArgs>
+  }
+  export type BusinessFunctionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    services?: boolean | ServiceDefaultArgs<ExtArgs>
+  }
+
+  export type $BusinessFunctionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BusinessFunction"
+    objects: {
+      services: Prisma.$ServicePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      serviceId: number
+    }, ExtArgs["result"]["businessFunction"]>
+    composites: {}
+  }
+
+  type BusinessFunctionGetPayload<S extends boolean | null | undefined | BusinessFunctionDefaultArgs> = $Result.GetResult<Prisma.$BusinessFunctionPayload, S>
+
+  type BusinessFunctionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<BusinessFunctionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: BusinessFunctionCountAggregateInputType | true
+    }
+
+  export interface BusinessFunctionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BusinessFunction'], meta: { name: 'BusinessFunction' } }
+    /**
+     * Find zero or one BusinessFunction that matches the filter.
+     * @param {BusinessFunctionFindUniqueArgs} args - Arguments to find a BusinessFunction
+     * @example
+     * // Get one BusinessFunction
+     * const businessFunction = await prisma.businessFunction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BusinessFunctionFindUniqueArgs>(args: SelectSubset<T, BusinessFunctionFindUniqueArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one BusinessFunction that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {BusinessFunctionFindUniqueOrThrowArgs} args - Arguments to find a BusinessFunction
+     * @example
+     * // Get one BusinessFunction
+     * const businessFunction = await prisma.businessFunction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BusinessFunctionFindUniqueOrThrowArgs>(args: SelectSubset<T, BusinessFunctionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first BusinessFunction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionFindFirstArgs} args - Arguments to find a BusinessFunction
+     * @example
+     * // Get one BusinessFunction
+     * const businessFunction = await prisma.businessFunction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BusinessFunctionFindFirstArgs>(args?: SelectSubset<T, BusinessFunctionFindFirstArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first BusinessFunction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionFindFirstOrThrowArgs} args - Arguments to find a BusinessFunction
+     * @example
+     * // Get one BusinessFunction
+     * const businessFunction = await prisma.businessFunction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BusinessFunctionFindFirstOrThrowArgs>(args?: SelectSubset<T, BusinessFunctionFindFirstOrThrowArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more BusinessFunctions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BusinessFunctions
+     * const businessFunctions = await prisma.businessFunction.findMany()
+     * 
+     * // Get first 10 BusinessFunctions
+     * const businessFunctions = await prisma.businessFunction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const businessFunctionWithIdOnly = await prisma.businessFunction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BusinessFunctionFindManyArgs>(args?: SelectSubset<T, BusinessFunctionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a BusinessFunction.
+     * @param {BusinessFunctionCreateArgs} args - Arguments to create a BusinessFunction.
+     * @example
+     * // Create one BusinessFunction
+     * const BusinessFunction = await prisma.businessFunction.create({
+     *   data: {
+     *     // ... data to create a BusinessFunction
+     *   }
+     * })
+     * 
+     */
+    create<T extends BusinessFunctionCreateArgs>(args: SelectSubset<T, BusinessFunctionCreateArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many BusinessFunctions.
+     * @param {BusinessFunctionCreateManyArgs} args - Arguments to create many BusinessFunctions.
+     * @example
+     * // Create many BusinessFunctions
+     * const businessFunction = await prisma.businessFunction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BusinessFunctionCreateManyArgs>(args?: SelectSubset<T, BusinessFunctionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BusinessFunctions and returns the data saved in the database.
+     * @param {BusinessFunctionCreateManyAndReturnArgs} args - Arguments to create many BusinessFunctions.
+     * @example
+     * // Create many BusinessFunctions
+     * const businessFunction = await prisma.businessFunction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BusinessFunctions and only return the `id`
+     * const businessFunctionWithIdOnly = await prisma.businessFunction.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BusinessFunctionCreateManyAndReturnArgs>(args?: SelectSubset<T, BusinessFunctionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a BusinessFunction.
+     * @param {BusinessFunctionDeleteArgs} args - Arguments to delete one BusinessFunction.
+     * @example
+     * // Delete one BusinessFunction
+     * const BusinessFunction = await prisma.businessFunction.delete({
+     *   where: {
+     *     // ... filter to delete one BusinessFunction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BusinessFunctionDeleteArgs>(args: SelectSubset<T, BusinessFunctionDeleteArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one BusinessFunction.
+     * @param {BusinessFunctionUpdateArgs} args - Arguments to update one BusinessFunction.
+     * @example
+     * // Update one BusinessFunction
+     * const businessFunction = await prisma.businessFunction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BusinessFunctionUpdateArgs>(args: SelectSubset<T, BusinessFunctionUpdateArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more BusinessFunctions.
+     * @param {BusinessFunctionDeleteManyArgs} args - Arguments to filter BusinessFunctions to delete.
+     * @example
+     * // Delete a few BusinessFunctions
+     * const { count } = await prisma.businessFunction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BusinessFunctionDeleteManyArgs>(args?: SelectSubset<T, BusinessFunctionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BusinessFunctions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BusinessFunctions
+     * const businessFunction = await prisma.businessFunction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BusinessFunctionUpdateManyArgs>(args: SelectSubset<T, BusinessFunctionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BusinessFunction.
+     * @param {BusinessFunctionUpsertArgs} args - Arguments to update or create a BusinessFunction.
+     * @example
+     * // Update or create a BusinessFunction
+     * const businessFunction = await prisma.businessFunction.upsert({
+     *   create: {
+     *     // ... data to create a BusinessFunction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BusinessFunction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BusinessFunctionUpsertArgs>(args: SelectSubset<T, BusinessFunctionUpsertArgs<ExtArgs>>): Prisma__BusinessFunctionClient<$Result.GetResult<Prisma.$BusinessFunctionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of BusinessFunctions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionCountArgs} args - Arguments to filter BusinessFunctions to count.
+     * @example
+     * // Count the number of BusinessFunctions
+     * const count = await prisma.businessFunction.count({
+     *   where: {
+     *     // ... the filter for the BusinessFunctions we want to count
+     *   }
+     * })
+    **/
+    count<T extends BusinessFunctionCountArgs>(
+      args?: Subset<T, BusinessFunctionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BusinessFunctionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BusinessFunction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BusinessFunctionAggregateArgs>(args: Subset<T, BusinessFunctionAggregateArgs>): Prisma.PrismaPromise<GetBusinessFunctionAggregateType<T>>
+
+    /**
+     * Group by BusinessFunction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusinessFunctionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BusinessFunctionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BusinessFunctionGroupByArgs['orderBy'] }
+        : { orderBy?: BusinessFunctionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BusinessFunctionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBusinessFunctionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BusinessFunction model
+   */
+  readonly fields: BusinessFunctionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BusinessFunction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BusinessFunctionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    services<T extends ServiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceDefaultArgs<ExtArgs>>): Prisma__ServiceClient<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BusinessFunction model
+   */ 
+  interface BusinessFunctionFieldRefs {
+    readonly id: FieldRef<"BusinessFunction", 'Int'>
+    readonly name: FieldRef<"BusinessFunction", 'String'>
+    readonly serviceId: FieldRef<"BusinessFunction", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BusinessFunction findUnique
+   */
+  export type BusinessFunctionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * Filter, which BusinessFunction to fetch.
+     */
+    where: BusinessFunctionWhereUniqueInput
+  }
+
+  /**
+   * BusinessFunction findUniqueOrThrow
+   */
+  export type BusinessFunctionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * Filter, which BusinessFunction to fetch.
+     */
+    where: BusinessFunctionWhereUniqueInput
+  }
+
+  /**
+   * BusinessFunction findFirst
+   */
+  export type BusinessFunctionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * Filter, which BusinessFunction to fetch.
+     */
+    where?: BusinessFunctionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusinessFunctions to fetch.
+     */
+    orderBy?: BusinessFunctionOrderByWithRelationInput | BusinessFunctionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BusinessFunctions.
+     */
+    cursor?: BusinessFunctionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusinessFunctions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusinessFunctions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BusinessFunctions.
+     */
+    distinct?: BusinessFunctionScalarFieldEnum | BusinessFunctionScalarFieldEnum[]
+  }
+
+  /**
+   * BusinessFunction findFirstOrThrow
+   */
+  export type BusinessFunctionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * Filter, which BusinessFunction to fetch.
+     */
+    where?: BusinessFunctionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusinessFunctions to fetch.
+     */
+    orderBy?: BusinessFunctionOrderByWithRelationInput | BusinessFunctionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BusinessFunctions.
+     */
+    cursor?: BusinessFunctionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusinessFunctions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusinessFunctions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BusinessFunctions.
+     */
+    distinct?: BusinessFunctionScalarFieldEnum | BusinessFunctionScalarFieldEnum[]
+  }
+
+  /**
+   * BusinessFunction findMany
+   */
+  export type BusinessFunctionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * Filter, which BusinessFunctions to fetch.
+     */
+    where?: BusinessFunctionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusinessFunctions to fetch.
+     */
+    orderBy?: BusinessFunctionOrderByWithRelationInput | BusinessFunctionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BusinessFunctions.
+     */
+    cursor?: BusinessFunctionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusinessFunctions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusinessFunctions.
+     */
+    skip?: number
+    distinct?: BusinessFunctionScalarFieldEnum | BusinessFunctionScalarFieldEnum[]
+  }
+
+  /**
+   * BusinessFunction create
+   */
+  export type BusinessFunctionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BusinessFunction.
+     */
+    data: XOR<BusinessFunctionCreateInput, BusinessFunctionUncheckedCreateInput>
+  }
+
+  /**
+   * BusinessFunction createMany
+   */
+  export type BusinessFunctionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BusinessFunctions.
+     */
+    data: BusinessFunctionCreateManyInput | BusinessFunctionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BusinessFunction createManyAndReturn
+   */
+  export type BusinessFunctionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many BusinessFunctions.
+     */
+    data: BusinessFunctionCreateManyInput | BusinessFunctionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BusinessFunction update
+   */
+  export type BusinessFunctionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BusinessFunction.
+     */
+    data: XOR<BusinessFunctionUpdateInput, BusinessFunctionUncheckedUpdateInput>
+    /**
+     * Choose, which BusinessFunction to update.
+     */
+    where: BusinessFunctionWhereUniqueInput
+  }
+
+  /**
+   * BusinessFunction updateMany
+   */
+  export type BusinessFunctionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BusinessFunctions.
+     */
+    data: XOR<BusinessFunctionUpdateManyMutationInput, BusinessFunctionUncheckedUpdateManyInput>
+    /**
+     * Filter which BusinessFunctions to update
+     */
+    where?: BusinessFunctionWhereInput
+  }
+
+  /**
+   * BusinessFunction upsert
+   */
+  export type BusinessFunctionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BusinessFunction to update in case it exists.
+     */
+    where: BusinessFunctionWhereUniqueInput
+    /**
+     * In case the BusinessFunction found by the `where` argument doesn't exist, create a new BusinessFunction with this data.
+     */
+    create: XOR<BusinessFunctionCreateInput, BusinessFunctionUncheckedCreateInput>
+    /**
+     * In case the BusinessFunction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BusinessFunctionUpdateInput, BusinessFunctionUncheckedUpdateInput>
+  }
+
+  /**
+   * BusinessFunction delete
+   */
+  export type BusinessFunctionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
+    /**
+     * Filter which BusinessFunction to delete.
+     */
+    where: BusinessFunctionWhereUniqueInput
+  }
+
+  /**
+   * BusinessFunction deleteMany
+   */
+  export type BusinessFunctionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BusinessFunctions to delete
+     */
+    where?: BusinessFunctionWhereInput
+  }
+
+  /**
+   * BusinessFunction without action
+   */
+  export type BusinessFunctionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessFunction
+     */
+    select?: BusinessFunctionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusinessFunctionInclude<ExtArgs> | null
   }
 
 
@@ -14664,12 +15718,20 @@ export namespace Prisma {
     type: 'type',
     status: 'status',
     repoUrl: 'repoUrl',
-    businessFunction: 'businessFunction',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+  export const BusinessFunctionScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    serviceId: 'serviceId'
+  };
+
+  export type BusinessFunctionScalarFieldEnum = (typeof BusinessFunctionScalarFieldEnum)[keyof typeof BusinessFunctionScalarFieldEnum]
 
 
   export const EnvironmentMasterScalarFieldEnum: {
@@ -15147,9 +16209,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFilter<"Service"> | $Enums.ServiceType
     status?: EnumServiceStatusFilter<"Service"> | $Enums.ServiceStatus
     repoUrl?: StringFilter<"Service"> | string
-    businessFunction?: StringNullableFilter<"Service"> | string | null
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
+    businessFunction?: BusinessFunctionListRelationFilter
     project?: XOR<ProjectRelationFilter, ProjectWhereInput>
     serviceEnvironments?: ServiceEnvironmentListRelationFilter
   }
@@ -15162,9 +16224,9 @@ export namespace Prisma {
     type?: SortOrder
     status?: SortOrder
     repoUrl?: SortOrder
-    businessFunction?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    businessFunction?: BusinessFunctionOrderByRelationAggregateInput
     project?: ProjectOrderByWithRelationInput
     serviceEnvironments?: ServiceEnvironmentOrderByRelationAggregateInput
   }
@@ -15180,9 +16242,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFilter<"Service"> | $Enums.ServiceType
     status?: EnumServiceStatusFilter<"Service"> | $Enums.ServiceStatus
     repoUrl?: StringFilter<"Service"> | string
-    businessFunction?: StringNullableFilter<"Service"> | string | null
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
+    businessFunction?: BusinessFunctionListRelationFilter
     project?: XOR<ProjectRelationFilter, ProjectWhereInput>
     serviceEnvironments?: ServiceEnvironmentListRelationFilter
   }, "id" | "name">
@@ -15195,7 +16257,6 @@ export namespace Prisma {
     type?: SortOrder
     status?: SortOrder
     repoUrl?: SortOrder
-    businessFunction?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
@@ -15216,9 +16277,55 @@ export namespace Prisma {
     type?: EnumServiceTypeWithAggregatesFilter<"Service"> | $Enums.ServiceType
     status?: EnumServiceStatusWithAggregatesFilter<"Service"> | $Enums.ServiceStatus
     repoUrl?: StringWithAggregatesFilter<"Service"> | string
-    businessFunction?: StringNullableWithAggregatesFilter<"Service"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Service"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Service"> | Date | string
+  }
+
+  export type BusinessFunctionWhereInput = {
+    AND?: BusinessFunctionWhereInput | BusinessFunctionWhereInput[]
+    OR?: BusinessFunctionWhereInput[]
+    NOT?: BusinessFunctionWhereInput | BusinessFunctionWhereInput[]
+    id?: IntFilter<"BusinessFunction"> | number
+    name?: StringFilter<"BusinessFunction"> | string
+    serviceId?: IntFilter<"BusinessFunction"> | number
+    services?: XOR<ServiceRelationFilter, ServiceWhereInput>
+  }
+
+  export type BusinessFunctionOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    serviceId?: SortOrder
+    services?: ServiceOrderByWithRelationInput
+  }
+
+  export type BusinessFunctionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BusinessFunctionWhereInput | BusinessFunctionWhereInput[]
+    OR?: BusinessFunctionWhereInput[]
+    NOT?: BusinessFunctionWhereInput | BusinessFunctionWhereInput[]
+    name?: StringFilter<"BusinessFunction"> | string
+    serviceId?: IntFilter<"BusinessFunction"> | number
+    services?: XOR<ServiceRelationFilter, ServiceWhereInput>
+  }, "id">
+
+  export type BusinessFunctionOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    serviceId?: SortOrder
+    _count?: BusinessFunctionCountOrderByAggregateInput
+    _avg?: BusinessFunctionAvgOrderByAggregateInput
+    _max?: BusinessFunctionMaxOrderByAggregateInput
+    _min?: BusinessFunctionMinOrderByAggregateInput
+    _sum?: BusinessFunctionSumOrderByAggregateInput
+  }
+
+  export type BusinessFunctionScalarWhereWithAggregatesInput = {
+    AND?: BusinessFunctionScalarWhereWithAggregatesInput | BusinessFunctionScalarWhereWithAggregatesInput[]
+    OR?: BusinessFunctionScalarWhereWithAggregatesInput[]
+    NOT?: BusinessFunctionScalarWhereWithAggregatesInput | BusinessFunctionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BusinessFunction"> | number
+    name?: StringWithAggregatesFilter<"BusinessFunction"> | string
+    serviceId?: IntWithAggregatesFilter<"BusinessFunction"> | number
   }
 
   export type EnvironmentMasterWhereInput = {
@@ -16092,9 +17199,9 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    businessFunction?: BusinessFunctionCreateNestedManyWithoutServicesInput
     project: ProjectCreateNestedOneWithoutServicesInput
     serviceEnvironments?: ServiceEnvironmentCreateNestedManyWithoutServiceInput
   }
@@ -16107,9 +17214,9 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    businessFunction?: BusinessFunctionUncheckedCreateNestedManyWithoutServicesInput
     serviceEnvironments?: ServiceEnvironmentUncheckedCreateNestedManyWithoutServiceInput
   }
 
@@ -16119,9 +17226,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    businessFunction?: BusinessFunctionUpdateManyWithoutServicesNestedInput
     project?: ProjectUpdateOneRequiredWithoutServicesNestedInput
     serviceEnvironments?: ServiceEnvironmentUpdateManyWithoutServiceNestedInput
   }
@@ -16134,9 +17241,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    businessFunction?: BusinessFunctionUncheckedUpdateManyWithoutServicesNestedInput
     serviceEnvironments?: ServiceEnvironmentUncheckedUpdateManyWithoutServiceNestedInput
   }
 
@@ -16148,7 +17255,6 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16159,7 +17265,6 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16172,9 +17277,46 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusinessFunctionCreateInput = {
+    name: string
+    services: ServiceCreateNestedOneWithoutBusinessFunctionInput
+  }
+
+  export type BusinessFunctionUncheckedCreateInput = {
+    id?: number
+    name: string
+    serviceId: number
+  }
+
+  export type BusinessFunctionUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    services?: ServiceUpdateOneRequiredWithoutBusinessFunctionNestedInput
+  }
+
+  export type BusinessFunctionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    serviceId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BusinessFunctionCreateManyInput = {
+    id?: number
+    name: string
+    serviceId: number
+  }
+
+  export type BusinessFunctionUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BusinessFunctionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    serviceId?: IntFieldUpdateOperationsInput | number
   }
 
   export type EnvironmentMasterCreateInput = {
@@ -17221,6 +18363,12 @@ export namespace Prisma {
     not?: NestedEnumServiceStatusFilter<$PrismaModel> | $Enums.ServiceStatus
   }
 
+  export type BusinessFunctionListRelationFilter = {
+    every?: BusinessFunctionWhereInput
+    some?: BusinessFunctionWhereInput
+    none?: BusinessFunctionWhereInput
+  }
+
   export type ProjectRelationFilter = {
     is?: ProjectWhereInput
     isNot?: ProjectWhereInput
@@ -17230,6 +18378,10 @@ export namespace Prisma {
     every?: ServiceEnvironmentWhereInput
     some?: ServiceEnvironmentWhereInput
     none?: ServiceEnvironmentWhereInput
+  }
+
+  export type BusinessFunctionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ServiceEnvironmentOrderByRelationAggregateInput = {
@@ -17244,7 +18396,6 @@ export namespace Prisma {
     type?: SortOrder
     status?: SortOrder
     repoUrl?: SortOrder
-    businessFunction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17262,7 +18413,6 @@ export namespace Prisma {
     type?: SortOrder
     status?: SortOrder
     repoUrl?: SortOrder
-    businessFunction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17275,7 +18425,6 @@ export namespace Prisma {
     type?: SortOrder
     status?: SortOrder
     repoUrl?: SortOrder
-    businessFunction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17313,6 +18462,39 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumServiceStatusFilter<$PrismaModel>
     _max?: NestedEnumServiceStatusFilter<$PrismaModel>
+  }
+
+  export type ServiceRelationFilter = {
+    is?: ServiceWhereInput
+    isNot?: ServiceWhereInput
+  }
+
+  export type BusinessFunctionCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    serviceId?: SortOrder
+  }
+
+  export type BusinessFunctionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    serviceId?: SortOrder
+  }
+
+  export type BusinessFunctionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    serviceId?: SortOrder
+  }
+
+  export type BusinessFunctionMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    serviceId?: SortOrder
+  }
+
+  export type BusinessFunctionSumOrderByAggregateInput = {
+    id?: SortOrder
+    serviceId?: SortOrder
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -17488,11 +18670,6 @@ export namespace Prisma {
     hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
-  }
-
-  export type ServiceRelationFilter = {
-    is?: ServiceWhereInput
-    isNot?: ServiceWhereInput
   }
 
   export type ProjectEnvironmentRelationFilter = {
@@ -18090,6 +19267,13 @@ export namespace Prisma {
     deleteMany?: ProjectEnvironmentScalarWhereInput | ProjectEnvironmentScalarWhereInput[]
   }
 
+  export type BusinessFunctionCreateNestedManyWithoutServicesInput = {
+    create?: XOR<BusinessFunctionCreateWithoutServicesInput, BusinessFunctionUncheckedCreateWithoutServicesInput> | BusinessFunctionCreateWithoutServicesInput[] | BusinessFunctionUncheckedCreateWithoutServicesInput[]
+    connectOrCreate?: BusinessFunctionCreateOrConnectWithoutServicesInput | BusinessFunctionCreateOrConnectWithoutServicesInput[]
+    createMany?: BusinessFunctionCreateManyServicesInputEnvelope
+    connect?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+  }
+
   export type ProjectCreateNestedOneWithoutServicesInput = {
     create?: XOR<ProjectCreateWithoutServicesInput, ProjectUncheckedCreateWithoutServicesInput>
     connectOrCreate?: ProjectCreateOrConnectWithoutServicesInput
@@ -18101,6 +19285,13 @@ export namespace Prisma {
     connectOrCreate?: ServiceEnvironmentCreateOrConnectWithoutServiceInput | ServiceEnvironmentCreateOrConnectWithoutServiceInput[]
     createMany?: ServiceEnvironmentCreateManyServiceInputEnvelope
     connect?: ServiceEnvironmentWhereUniqueInput | ServiceEnvironmentWhereUniqueInput[]
+  }
+
+  export type BusinessFunctionUncheckedCreateNestedManyWithoutServicesInput = {
+    create?: XOR<BusinessFunctionCreateWithoutServicesInput, BusinessFunctionUncheckedCreateWithoutServicesInput> | BusinessFunctionCreateWithoutServicesInput[] | BusinessFunctionUncheckedCreateWithoutServicesInput[]
+    connectOrCreate?: BusinessFunctionCreateOrConnectWithoutServicesInput | BusinessFunctionCreateOrConnectWithoutServicesInput[]
+    createMany?: BusinessFunctionCreateManyServicesInputEnvelope
+    connect?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
   }
 
   export type ServiceEnvironmentUncheckedCreateNestedManyWithoutServiceInput = {
@@ -18120,6 +19311,20 @@ export namespace Prisma {
 
   export type EnumServiceStatusFieldUpdateOperationsInput = {
     set?: $Enums.ServiceStatus
+  }
+
+  export type BusinessFunctionUpdateManyWithoutServicesNestedInput = {
+    create?: XOR<BusinessFunctionCreateWithoutServicesInput, BusinessFunctionUncheckedCreateWithoutServicesInput> | BusinessFunctionCreateWithoutServicesInput[] | BusinessFunctionUncheckedCreateWithoutServicesInput[]
+    connectOrCreate?: BusinessFunctionCreateOrConnectWithoutServicesInput | BusinessFunctionCreateOrConnectWithoutServicesInput[]
+    upsert?: BusinessFunctionUpsertWithWhereUniqueWithoutServicesInput | BusinessFunctionUpsertWithWhereUniqueWithoutServicesInput[]
+    createMany?: BusinessFunctionCreateManyServicesInputEnvelope
+    set?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    disconnect?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    delete?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    connect?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    update?: BusinessFunctionUpdateWithWhereUniqueWithoutServicesInput | BusinessFunctionUpdateWithWhereUniqueWithoutServicesInput[]
+    updateMany?: BusinessFunctionUpdateManyWithWhereWithoutServicesInput | BusinessFunctionUpdateManyWithWhereWithoutServicesInput[]
+    deleteMany?: BusinessFunctionScalarWhereInput | BusinessFunctionScalarWhereInput[]
   }
 
   export type ProjectUpdateOneRequiredWithoutServicesNestedInput = {
@@ -18144,6 +19349,20 @@ export namespace Prisma {
     deleteMany?: ServiceEnvironmentScalarWhereInput | ServiceEnvironmentScalarWhereInput[]
   }
 
+  export type BusinessFunctionUncheckedUpdateManyWithoutServicesNestedInput = {
+    create?: XOR<BusinessFunctionCreateWithoutServicesInput, BusinessFunctionUncheckedCreateWithoutServicesInput> | BusinessFunctionCreateWithoutServicesInput[] | BusinessFunctionUncheckedCreateWithoutServicesInput[]
+    connectOrCreate?: BusinessFunctionCreateOrConnectWithoutServicesInput | BusinessFunctionCreateOrConnectWithoutServicesInput[]
+    upsert?: BusinessFunctionUpsertWithWhereUniqueWithoutServicesInput | BusinessFunctionUpsertWithWhereUniqueWithoutServicesInput[]
+    createMany?: BusinessFunctionCreateManyServicesInputEnvelope
+    set?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    disconnect?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    delete?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    connect?: BusinessFunctionWhereUniqueInput | BusinessFunctionWhereUniqueInput[]
+    update?: BusinessFunctionUpdateWithWhereUniqueWithoutServicesInput | BusinessFunctionUpdateWithWhereUniqueWithoutServicesInput[]
+    updateMany?: BusinessFunctionUpdateManyWithWhereWithoutServicesInput | BusinessFunctionUpdateManyWithWhereWithoutServicesInput[]
+    deleteMany?: BusinessFunctionScalarWhereInput | BusinessFunctionScalarWhereInput[]
+  }
+
   export type ServiceEnvironmentUncheckedUpdateManyWithoutServiceNestedInput = {
     create?: XOR<ServiceEnvironmentCreateWithoutServiceInput, ServiceEnvironmentUncheckedCreateWithoutServiceInput> | ServiceEnvironmentCreateWithoutServiceInput[] | ServiceEnvironmentUncheckedCreateWithoutServiceInput[]
     connectOrCreate?: ServiceEnvironmentCreateOrConnectWithoutServiceInput | ServiceEnvironmentCreateOrConnectWithoutServiceInput[]
@@ -18156,6 +19375,20 @@ export namespace Prisma {
     update?: ServiceEnvironmentUpdateWithWhereUniqueWithoutServiceInput | ServiceEnvironmentUpdateWithWhereUniqueWithoutServiceInput[]
     updateMany?: ServiceEnvironmentUpdateManyWithWhereWithoutServiceInput | ServiceEnvironmentUpdateManyWithWhereWithoutServiceInput[]
     deleteMany?: ServiceEnvironmentScalarWhereInput | ServiceEnvironmentScalarWhereInput[]
+  }
+
+  export type ServiceCreateNestedOneWithoutBusinessFunctionInput = {
+    create?: XOR<ServiceCreateWithoutBusinessFunctionInput, ServiceUncheckedCreateWithoutBusinessFunctionInput>
+    connectOrCreate?: ServiceCreateOrConnectWithoutBusinessFunctionInput
+    connect?: ServiceWhereUniqueInput
+  }
+
+  export type ServiceUpdateOneRequiredWithoutBusinessFunctionNestedInput = {
+    create?: XOR<ServiceCreateWithoutBusinessFunctionInput, ServiceUncheckedCreateWithoutBusinessFunctionInput>
+    connectOrCreate?: ServiceCreateOrConnectWithoutBusinessFunctionInput
+    upsert?: ServiceUpsertWithoutBusinessFunctionInput
+    connect?: ServiceWhereUniqueInput
+    update?: XOR<XOR<ServiceUpdateToOneWithWhereWithoutBusinessFunctionInput, ServiceUpdateWithoutBusinessFunctionInput>, ServiceUncheckedUpdateWithoutBusinessFunctionInput>
   }
 
   export type ProjectEnvironmentCreateNestedManyWithoutEnvironmentMasterInput = {
@@ -19105,9 +20338,9 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    businessFunction?: BusinessFunctionCreateNestedManyWithoutServicesInput
     serviceEnvironments?: ServiceEnvironmentCreateNestedManyWithoutServiceInput
   }
 
@@ -19118,9 +20351,9 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    businessFunction?: BusinessFunctionUncheckedCreateNestedManyWithoutServicesInput
     serviceEnvironments?: ServiceEnvironmentUncheckedCreateNestedManyWithoutServiceInput
   }
 
@@ -19210,7 +20443,6 @@ export namespace Prisma {
     type?: EnumServiceTypeFilter<"Service"> | $Enums.ServiceType
     status?: EnumServiceStatusFilter<"Service"> | $Enums.ServiceStatus
     repoUrl?: StringFilter<"Service"> | string
-    businessFunction?: StringNullableFilter<"Service"> | string | null
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
   }
@@ -19248,6 +20480,25 @@ export namespace Prisma {
     namespaceId?: IntFilter<"ProjectEnvironment"> | number
     createdAt?: DateTimeFilter<"ProjectEnvironment"> | Date | string
     updatedAt?: DateTimeFilter<"ProjectEnvironment"> | Date | string
+  }
+
+  export type BusinessFunctionCreateWithoutServicesInput = {
+    name: string
+  }
+
+  export type BusinessFunctionUncheckedCreateWithoutServicesInput = {
+    id?: number
+    name: string
+  }
+
+  export type BusinessFunctionCreateOrConnectWithoutServicesInput = {
+    where: BusinessFunctionWhereUniqueInput
+    create: XOR<BusinessFunctionCreateWithoutServicesInput, BusinessFunctionUncheckedCreateWithoutServicesInput>
+  }
+
+  export type BusinessFunctionCreateManyServicesInputEnvelope = {
+    data: BusinessFunctionCreateManyServicesInput | BusinessFunctionCreateManyServicesInput[]
+    skipDuplicates?: boolean
   }
 
   export type ProjectCreateWithoutServicesInput = {
@@ -19313,6 +20564,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BusinessFunctionUpsertWithWhereUniqueWithoutServicesInput = {
+    where: BusinessFunctionWhereUniqueInput
+    update: XOR<BusinessFunctionUpdateWithoutServicesInput, BusinessFunctionUncheckedUpdateWithoutServicesInput>
+    create: XOR<BusinessFunctionCreateWithoutServicesInput, BusinessFunctionUncheckedCreateWithoutServicesInput>
+  }
+
+  export type BusinessFunctionUpdateWithWhereUniqueWithoutServicesInput = {
+    where: BusinessFunctionWhereUniqueInput
+    data: XOR<BusinessFunctionUpdateWithoutServicesInput, BusinessFunctionUncheckedUpdateWithoutServicesInput>
+  }
+
+  export type BusinessFunctionUpdateManyWithWhereWithoutServicesInput = {
+    where: BusinessFunctionScalarWhereInput
+    data: XOR<BusinessFunctionUpdateManyMutationInput, BusinessFunctionUncheckedUpdateManyWithoutServicesInput>
+  }
+
+  export type BusinessFunctionScalarWhereInput = {
+    AND?: BusinessFunctionScalarWhereInput | BusinessFunctionScalarWhereInput[]
+    OR?: BusinessFunctionScalarWhereInput[]
+    NOT?: BusinessFunctionScalarWhereInput | BusinessFunctionScalarWhereInput[]
+    id?: IntFilter<"BusinessFunction"> | number
+    name?: StringFilter<"BusinessFunction"> | string
+    serviceId?: IntFilter<"BusinessFunction"> | number
+  }
+
   export type ProjectUpsertWithoutServicesInput = {
     update: XOR<ProjectUpdateWithoutServicesInput, ProjectUncheckedUpdateWithoutServicesInput>
     create: XOR<ProjectCreateWithoutServicesInput, ProjectUncheckedCreateWithoutServicesInput>
@@ -19374,6 +20650,72 @@ export namespace Prisma {
     templateVersion?: StringFilter<"ServiceEnvironment"> | string
     createdAt?: DateTimeFilter<"ServiceEnvironment"> | Date | string
     updatedAt?: DateTimeFilter<"ServiceEnvironment"> | Date | string
+  }
+
+  export type ServiceCreateWithoutBusinessFunctionInput = {
+    name: string
+    buildStrategy: $Enums.BuildStrategy
+    type?: $Enums.ServiceType
+    status?: $Enums.ServiceStatus
+    repoUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutServicesInput
+    serviceEnvironments?: ServiceEnvironmentCreateNestedManyWithoutServiceInput
+  }
+
+  export type ServiceUncheckedCreateWithoutBusinessFunctionInput = {
+    id?: number
+    name: string
+    projectId: number
+    buildStrategy: $Enums.BuildStrategy
+    type?: $Enums.ServiceType
+    status?: $Enums.ServiceStatus
+    repoUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serviceEnvironments?: ServiceEnvironmentUncheckedCreateNestedManyWithoutServiceInput
+  }
+
+  export type ServiceCreateOrConnectWithoutBusinessFunctionInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutBusinessFunctionInput, ServiceUncheckedCreateWithoutBusinessFunctionInput>
+  }
+
+  export type ServiceUpsertWithoutBusinessFunctionInput = {
+    update: XOR<ServiceUpdateWithoutBusinessFunctionInput, ServiceUncheckedUpdateWithoutBusinessFunctionInput>
+    create: XOR<ServiceCreateWithoutBusinessFunctionInput, ServiceUncheckedCreateWithoutBusinessFunctionInput>
+    where?: ServiceWhereInput
+  }
+
+  export type ServiceUpdateToOneWithWhereWithoutBusinessFunctionInput = {
+    where?: ServiceWhereInput
+    data: XOR<ServiceUpdateWithoutBusinessFunctionInput, ServiceUncheckedUpdateWithoutBusinessFunctionInput>
+  }
+
+  export type ServiceUpdateWithoutBusinessFunctionInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    buildStrategy?: EnumBuildStrategyFieldUpdateOperationsInput | $Enums.BuildStrategy
+    type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+    repoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutServicesNestedInput
+    serviceEnvironments?: ServiceEnvironmentUpdateManyWithoutServiceNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutBusinessFunctionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: IntFieldUpdateOperationsInput | number
+    buildStrategy?: EnumBuildStrategyFieldUpdateOperationsInput | $Enums.BuildStrategy
+    type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
+    status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
+    repoUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceEnvironments?: ServiceEnvironmentUncheckedUpdateManyWithoutServiceNestedInput
   }
 
   export type ProjectEnvironmentCreateWithoutEnvironmentMasterInput = {
@@ -19954,9 +21296,9 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    businessFunction?: BusinessFunctionCreateNestedManyWithoutServicesInput
     project: ProjectCreateNestedOneWithoutServicesInput
   }
 
@@ -19968,9 +21310,9 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    businessFunction?: BusinessFunctionUncheckedCreateNestedManyWithoutServicesInput
   }
 
   export type ServiceCreateOrConnectWithoutServiceEnvironmentsInput = {
@@ -20059,9 +21401,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    businessFunction?: BusinessFunctionUpdateManyWithoutServicesNestedInput
     project?: ProjectUpdateOneRequiredWithoutServicesNestedInput
   }
 
@@ -20073,9 +21415,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    businessFunction?: BusinessFunctionUncheckedUpdateManyWithoutServicesNestedInput
   }
 
   export type ProjectEnvironmentUpsertWithoutServiceEnvironmentsInput = {
@@ -20658,7 +22000,6 @@ export namespace Prisma {
     type?: $Enums.ServiceType
     status?: $Enums.ServiceStatus
     repoUrl: string
-    businessFunction?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20684,9 +22025,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    businessFunction?: BusinessFunctionUpdateManyWithoutServicesNestedInput
     serviceEnvironments?: ServiceEnvironmentUpdateManyWithoutServiceNestedInput
   }
 
@@ -20697,9 +22038,9 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    businessFunction?: BusinessFunctionUncheckedUpdateManyWithoutServicesNestedInput
     serviceEnvironments?: ServiceEnvironmentUncheckedUpdateManyWithoutServiceNestedInput
   }
 
@@ -20710,7 +22051,6 @@ export namespace Prisma {
     type?: EnumServiceTypeFieldUpdateOperationsInput | $Enums.ServiceType
     status?: EnumServiceStatusFieldUpdateOperationsInput | $Enums.ServiceStatus
     repoUrl?: StringFieldUpdateOperationsInput | string
-    businessFunction?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20769,6 +22109,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BusinessFunctionCreateManyServicesInput = {
+    id?: number
+    name: string
+  }
+
   export type ServiceEnvironmentCreateManyServiceInput = {
     id?: number
     projectEnvironmentId: number
@@ -20784,6 +22129,20 @@ export namespace Prisma {
     templateVersion: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type BusinessFunctionUpdateWithoutServicesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BusinessFunctionUncheckedUpdateWithoutServicesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BusinessFunctionUncheckedUpdateManyWithoutServicesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceEnvironmentUpdateWithoutServiceInput = {
@@ -21536,6 +22895,10 @@ export namespace Prisma {
      * @deprecated Use ServiceDefaultArgs instead
      */
     export type ServiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ServiceDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BusinessFunctionDefaultArgs instead
+     */
+    export type BusinessFunctionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BusinessFunctionDefaultArgs<ExtArgs>
     /**
      * @deprecated Use EnvironmentMasterDefaultArgs instead
      */

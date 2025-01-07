@@ -70,13 +70,22 @@ model Service {
   type                ServiceType         @default(MICROSERVICE)
   status              ServiceStatus       @default(Approved)
   repoUrl             String
-  businessFunction    String?
+  businessFunction    BusinessFunction[]  
   project             Project             @relation(fields: [projectId], references: [id])
   serviceEnvironments ServiceEnvironment[]
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
 
   @@map("services")
+}
+
+model BusinessFunction {
+  id      Int       @id @default(autoincrement())
+  name    String
+  serviceId Int
+  services Service @relation(fields: [serviceId], references: [id])
+
+  @@map("business_functions") 
 }
 
 model EnvironmentMaster {

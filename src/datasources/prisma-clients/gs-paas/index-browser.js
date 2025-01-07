@@ -146,9 +146,14 @@ exports.Prisma.ServiceScalarFieldEnum = {
   type: 'type',
   status: 'status',
   repoUrl: 'repoUrl',
-  businessFunction: 'businessFunction',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BusinessFunctionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  serviceId: 'serviceId'
 };
 
 exports.Prisma.EnvironmentMasterScalarFieldEnum = {
@@ -328,6 +333,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Project: 'Project',
   Service: 'Service',
+  BusinessFunction: 'BusinessFunction',
   EnvironmentMaster: 'EnvironmentMaster',
   ProjectEnvironment: 'ProjectEnvironment',
   ServiceEnvironment: 'ServiceEnvironment',
