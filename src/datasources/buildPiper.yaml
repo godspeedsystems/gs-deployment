@@ -6,8 +6,7 @@ base_url: https://api.buildpiper.io
 #     statusCode: [401]
 headers: #these will be set in every API call to the datasource
   Content-Type: application/json
-  Authorization: <% config.buildPiper.apiToken %>
-
+  Authorization: <% `Bearer ${config.buildPiper.apiToken}` %>
 
 # retry: #default retry logic on all API calls. Can be overriden at the task level when calling the API
 #   when:
