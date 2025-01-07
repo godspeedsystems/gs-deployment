@@ -41,26 +41,19 @@ Service:
   properties:
     name:
       type: string
-    projectId:
+    project_id:
       type: integer
-    buildStrategy:
+    build_strategy:
       type: string
       enum:
         - ONCE
         - EVERY
-    # type:
-    #   type: string
-    #   default: MICROSERVICE
-    #   enum:
-    #     - MICROSERVICE
-    # status:
-    #   type: string
-    #   default: Approved
-    #   enum:
-    #     - Approved
-    #     - Approved_Pending
-    repoUrl:
+    repo_url:
       type: string
+    business_function:
+      type: array
+      items:
+        type: string
 EnvironmentMaster:
   type: object
   properties:

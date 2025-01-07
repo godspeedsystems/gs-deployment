@@ -29,6 +29,10 @@
 #   # grantType:      <% config.my_bank_api.auth.grantType %>
 # some_random_key: some_value
 type: axios
-base_url: https://api.buildpiper.io/api/v1/project/82/component/
+base_url: https://api.buildpiper.io
+# authn:
+#   fn: 'authWorkflow' # A function to refresh tokens
+#   refreshOn:
+#     statusCode: [401]
 headers:
-  Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2MTgyODM3LCJqdGkiOiIyNDBhYmRlYWQ3OTg0NDhlYjE1NjVlOTAxN2ZiMjEzYiIsInVzZXJfaWQiOjE3OH0.ZiE7Gp561z-HguQIlqNNExtLE1ywd9hogjMpfqFCoZyI-gkqACImGzpzzLW7-GqWqMnCaPvVbNOilxpGqyle3w
+  Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2MjQ4NDQ5LCJqdGkiOiJiZTFmODM5YWUwNmI0OTA3YTkxODcwZTMwMGYzNTFjMSIsInVzZXJfaWQiOjE3OH0.jGyV4OWGPmXuV1tVrLrk9IXOTa_PPkH3BFvdcsOHGOl3A5gWUlwnLGu6qwGWhffPJqXZ_InkoS1Edc-U29itzg

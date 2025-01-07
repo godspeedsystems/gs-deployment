@@ -21,6 +21,7 @@ http.post./gs-paas/service:
   summary: Create a new Service
   description: Create Service from database
   fn: com.biz.gs-paas.service.create
+  authn: false
   body:
     content:
       application/json:
@@ -90,4 +91,3 @@ http.post./gs-paas/service/search:
         application/json:
           schema:
             type: array
-
